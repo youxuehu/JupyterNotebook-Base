@@ -10,12 +10,13 @@ class TigerPreprocessor(ExecutePreprocessor):
     cell_source = Unicode(default_value="pwd", allow_none=False, help="cell source").tag(config=True)
 
     def preprocess(self, nb, resources=None, km=None):
+        print("cell_source: %s" % self.cell_source)
         print("================TigerPreprocessor=============preprocess============================================")
-        super(TigerPreprocessor, self).preprocess(nb, resources, km)
+        return super(TigerPreprocessor, self).preprocess(nb, resources, km)
 
     def preprocess_cell(self, cell, resources, index):
         print("================TigerPreprocessor=============preprocess_cell=========================================")
-        super(TigerPreprocessor, self).preprocess_cell(cell, resources, index)
+        return super(TigerPreprocessor, self).preprocess_cell(cell, resources, index)
 
 
 print("=====================tiger_preprocessor.py=========================")
