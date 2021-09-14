@@ -1,22 +1,23 @@
 # -*- coding:utf-8 -*-
 from nbconvert.preprocessors.execute import ExecutePreprocessor
-from traitlets.traitlets import Unicode
 
 error_raise = False
 
 
-class TigerPreprocessor(ExecutePreprocessor):
+class TigerPreprocessorV1(ExecutePreprocessor):
 
-    cell_source = Unicode(default_value="pwd", allow_none=False, help="cell source").tag(config=True)
+    def __init__(self, param_file_path, **kw):
+        super(TigerPreprocessorV1, self).__init__(**kw)
+        self.param_file_path = param_file_path
 
     def preprocess(self, nb, resources=None, km=None):
-        print("cell_source: %s" % self.cell_source)
+        print("param_file_path: %s" % self.param_file_path)
         print("================TigerPreprocessor=============preprocess============================================")
-        return super(TigerPreprocessor, self).preprocess(nb, resources, km)
+        return super(TigerPreprocessorV1, self).preprocess(nb, resources, km)
 
     def preprocess_cell(self, cell, resources, index):
         print("================TigerPreprocessor=============preprocess_cell=========================================")
-        return super(TigerPreprocessor, self).preprocess_cell(cell, resources, index)
+        return super(TigerPreprocessorV1, self).preprocess_cell(cell, resources, index)
 
 
 print("=====================tiger_preprocessor.py=========================")
