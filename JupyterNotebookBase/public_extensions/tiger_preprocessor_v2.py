@@ -8,6 +8,7 @@ error_raise = False
 class TigerPreprocessorV2(ExecutePreprocessor):
 
     def __init__(self, param_file_path, **kw):
+        print("=====================tiger_preprocessor_v2.py=========================")
         super(TigerPreprocessorV2, self).__init__(**kw)
         self.param_file_path = param_file_path
 
@@ -21,17 +22,17 @@ class TigerPreprocessorV2(ExecutePreprocessor):
         cell, resources = super(TigerPreprocessorV2, self).preprocess_cell(cell, resources, index)
         new_cell = self.execute_cell(cell=new_code_cell(source="%who"), cell_index=index, store_history=True)
         print()
-        print(new_cell.outputs[0]['text'])
+        print(new_cell.outputs[0]["text"])
         print()
-        if new_cell.outputs[0]['text']:
-            for v in new_cell.outputs[0]['text'].split("\t"):
+        if new_cell.outputs[0]["text"]:
+            for v in new_cell.outputs[0]["text"].split("\t"):
                 try:
-                    msg = self.execute_cell(cell=new_code_cell(source="%store {}".format(v.strip())), cell_index=index, store_history=True).outputs[0]['text'] # noqa
+                    msg = self.execute_cell(cell=new_code_cell(source="%store {}".format(v.strip())),
+                                            cell_index=index,
+                                            store_history=True).outputs[0]['text'] # noqa
                     print(msg)
                 except Exception: # noqa
                     pass
-        self.nb['cells'][index] = cell
+        self.nb["cells"][index] = cell
         return cell, resources
 
-
-print("=====================tiger_preprocessor_v2.py=========================")
