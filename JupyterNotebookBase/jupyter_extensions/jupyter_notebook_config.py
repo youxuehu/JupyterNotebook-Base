@@ -1,19 +1,26 @@
 # -*- coding:utf-8 -*-
 # Configuration file for jupyter-notebook.
 from JupyterNotebookBase.utils import common_utils
-c.NotebookApp.nbserver_extensions = {
-    "JupyterNotebookBase.server_handler.operate_server_notebook_handler": True
-}
-c.NotebookApp.disable_check_xsrf = True
+
+c.NotebookApp.nbserver_extensions = {"JupyterNotebookBase.server_handler.operate_server_notebook_handler": True}  # noqa
+c.NotebookApp.disable_check_xsrf = True  # noqa
 if common_utils.is_new_notebook():
-    c.NotebookApp.session_manager_class = "JupyterNotebookBase.public_extensions.tiger_session.HubSessionManagerV2"
-    c.MappingKernelManager.kernel_manager_class = "JupyterNotebookBase.public_extensions.tiger_km.HubKernelManagerV2"
+    c.NotebookApp.session_manager_class = (
+        "JupyterNotebookBase.public_extensions.tiger_session.HubSessionManagerV2"  # noqa
+    )
+    c.MappingKernelManager.kernel_manager_class = (
+        "JupyterNotebookBase.public_extensions.tiger_km.HubKernelManagerV2"  # noqa
+    )
 else:
-    c.NotebookApp.session_manager_class="JupyterNotebookBase.public_extensions.tiger_session.HubSessionManager"
-    c.MappingKernelManager.kernel_manager_class = "JupyterNotebookBase.public_extensions.tiger_km.HubKernelManager"
-#------------------------------------------------------------------------------
+    c.NotebookApp.session_manager_class = (
+        "JupyterNotebookBase.public_extensions.tiger_session.HubSessionManager"  # noqa
+    )
+    c.MappingKernelManager.kernel_manager_class = (
+        "JupyterNotebookBase.public_extensions.tiger_km.HubKernelManager"  # noqa
+    )
+# ------------------------------------------------------------------------------
 # Application(SingletonConfigurable) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## This is an application.
 
 ## The date format used by logging formatters for %(asctime)s
@@ -37,9 +44,9 @@ else:
 #  Default: False
 # c.Application.show_config_json = False
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # JupyterApp(Application) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Base class for Jupyter applications
 
 ## Answer yes to any prompts.
@@ -78,9 +85,9 @@ else:
 #  See also: Application.show_config_json
 # c.JupyterApp.show_config_json = False
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # NotebookApp(JupyterApp) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## 设置Access-Control-Allow-Credentials:true报头
 #  Default: False
 # c.NotebookApp.allow_credentials = False
@@ -128,11 +135,11 @@ else:
 #  Local IP addresses (such as 127.0.0.1 and ::1) are allowed as local, along
 #  with hostnames configured in local_hostnames.
 #  Default: False
-c.NotebookApp.allow_remote_access = True
+c.NotebookApp.allow_remote_access = True  # noqa
 
 ## 是否允许notebook在root用户下运行.
 #  Default: False
-c.NotebookApp.allow_root = True
+c.NotebookApp.allow_root = True  # noqa
 
 ## Answer yes to any prompts.
 #  See also: JupyterApp.answer_yes
@@ -297,7 +304,7 @@ c.NotebookApp.allow_root = True
 
 ## notebook服务会监听的IP地址.
 #  Default: 'localhost'
-c.NotebookApp.ip = '0.0.0.0'
+c.NotebookApp.ip = "0.0.0.0"  # noqa
 
 ## Supply extra arguments that will be passed to Jinja environment.
 #  Default: {}
@@ -392,14 +399,14 @@ c.NotebookApp.ip = '0.0.0.0'
 
 ## 用于笔记本和内核的目录。
 #  Default: ''
-c.NotebookApp.notebook_dir = '/Users/youxuehu/PycharmProjects/JupyterNotebook-Base'
+c.NotebookApp.notebook_dir = "/Users/youxuehu/PycharmProjects/JupyterNotebook-Base"  # noqa
 
 ## Whether to open in a browser after starting. The specific browser used is
 #  platform dependent and determined by the python standard library `webbrowser`
 #  module, unless it is overridden using the --browser (NotebookApp.browser)
 #  configuration option.
 #  Default: True
-c.NotebookApp.open_browser = False
+c.NotebookApp.open_browser = False  # noqa
 
 ## Hashed password to use for web authentication.
 #
@@ -409,7 +416,7 @@ c.NotebookApp.open_browser = False
 #
 #  The string should be of the form type:salt:hashed-password.
 #  Default: ''
-c.NotebookApp.password = ''
+c.NotebookApp.password = ""  # noqa
 
 ## Forces users to use a password for the Notebook server. This is useful in a
 #  multi user environment, for instance when everybody in the LAN can access each
@@ -488,7 +495,7 @@ c.NotebookApp.password = ''
 #  default when the notebook server is connected to a terminal, a login shell
 #  otherwise.
 #  Default: {}
-c.NotebookApp.terminado_settings = {'shell_command': ['/bin/bash']}
+c.NotebookApp.terminado_settings = {"shell_command": ["/bin/bash"]}  # noqa
 
 ## Set to False to disable terminals.
 #
@@ -510,7 +517,7 @@ c.NotebookApp.terminado_settings = {'shell_command': ['/bin/bash']}
 #  Setting to an empty string disables authentication altogether, which is NOT
 #  RECOMMENDED.
 #  Default: '<generated>'
-c.NotebookApp.token = ''
+c.NotebookApp.token = ""  # noqa
 
 ## Supply overrides for the tornado.web.Application that the Jupyter notebook
 #  uses.
@@ -573,9 +580,9 @@ c.NotebookApp.token = ''
 #  Default: ''
 # c.NotebookApp.websocket_url = ''
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # ConnectionFileMixin(LoggingConfigurable) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Mixin for configurable classes that work with connection files
 
 ## JSON file in which to store connection info [default: kernel-<pid>.json]
@@ -616,9 +623,9 @@ c.NotebookApp.token = ''
 #  Default: 'tcp'
 # c.ConnectionFileMixin.transport = 'tcp'
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # KernelManager(ConnectionFileMixin) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Manages a single kernel in a subprocess on this host.
 #
 #  This version starts kernels with Popen.
@@ -678,9 +685,9 @@ c.NotebookApp.token = ''
 #  See also: ConnectionFileMixin.transport
 # c.KernelManager.transport = 'tcp'
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Session(Configurable) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Object for handling serialization and sending of messages.
 #
 #  The Session object handles building messages and sending them with ZMQ sockets
@@ -784,9 +791,9 @@ c.NotebookApp.token = ''
 #  Default: 'youxuehu'
 # c.Session.username = 'youxuehu'
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # MultiKernelManager(LoggingConfigurable) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## A class for managing multiple kernels.
 
 ## The name of the default kernel to start
@@ -802,9 +809,9 @@ c.NotebookApp.token = ''
 #  Default: True
 # c.MultiKernelManager.shared_context = True
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # MappingKernelManager(MultiKernelManager) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## A KernelManager that handles notebook mapping and HTTP error handling
 
 ## White list of allowed kernel message types. When the list is empty, all
@@ -865,9 +872,9 @@ c.NotebookApp.token = ''
 #  See also: MultiKernelManager.shared_context
 # c.MappingKernelManager.shared_context = True
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # KernelSpecManager(LoggingConfigurable) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## If there is no Python kernelspec registered and the IPython kernel is
 #  available, ensure it is added to the spec list.
 #  Default: True
@@ -884,9 +891,9 @@ c.NotebookApp.token = ''
 #  Default: set()
 # c.KernelSpecManager.whitelist = set()
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # ContentsManager(LoggingConfigurable) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Base class for serving files and directories.
 #
 #  This serves any text or binary file, as well as directories, with special
@@ -970,9 +977,9 @@ c.NotebookApp.token = ''
 #  Default: '未命名'
 # c.ContentsManager.untitled_notebook = '未命名'
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # FileManagerMixin(Configurable) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Mixin for ContentsAPI classes that interact with the filesystem.
 #
 #  Provides facilities for reading, writing, and copying both notebooks and
@@ -996,9 +1003,9 @@ c.NotebookApp.token = ''
 #  Default: True
 # c.FileManagerMixin.use_atomic_writing = True
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # FileContentsManager(FileManagerMixin, ContentsManager) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Allow access to hidden files
 #  See also: ContentsManager.allow_hidden
 # c.FileContentsManager.allow_hidden = False
@@ -1074,9 +1081,9 @@ c.NotebookApp.token = ''
 #  See also: FileManagerMixin.use_atomic_writing
 # c.FileContentsManager.use_atomic_writing = True
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # NotebookNotary(LoggingConfigurable) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## A class for computing and verifying notebook signatures.
 
 ## The hashing algorithm used to sign notebooks.
@@ -1107,9 +1114,9 @@ c.NotebookApp.token = ''
 #  Default: traitlets.Undefined
 # c.NotebookNotary.store_factory = traitlets.Undefined
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # AsyncMultiKernelManager(MultiKernelManager) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## The name of the default kernel to start
 #  See also: MultiKernelManager.default_kernel_name
 # c.AsyncMultiKernelManager.default_kernel_name = 'python3'
@@ -1123,9 +1130,9 @@ c.NotebookApp.token = ''
 #  See also: MultiKernelManager.shared_context
 # c.AsyncMultiKernelManager.shared_context = True
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # AsyncMappingKernelManager(MappingKernelManager, AsyncMultiKernelManager) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## White list of allowed kernel message types.
 #  See also: MappingKernelManager.allowed_message_types
 # c.AsyncMappingKernelManager.allowed_message_types = []
@@ -1172,9 +1179,9 @@ c.NotebookApp.token = ''
 #  See also: MultiKernelManager.shared_context
 # c.AsyncMappingKernelManager.shared_context = True
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # GatewayKernelManager(AsyncMappingKernelManager) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Kernel manager that supports remote kernels hosted by Jupyter Kernel or
 #  Enterprise Gateway.
 
@@ -1224,9 +1231,9 @@ c.NotebookApp.token = ''
 #  See also: MultiKernelManager.shared_context
 # c.GatewayKernelManager.shared_context = True
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # GatewayKernelSpecManager(KernelSpecManager) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## If there is no Python kernelspec registered and the IPython
 #  See also: KernelSpecManager.ensure_native_kernel
 # c.GatewayKernelSpecManager.ensure_native_kernel = True
@@ -1239,9 +1246,9 @@ c.NotebookApp.token = ''
 #  See also: KernelSpecManager.whitelist
 # c.GatewayKernelSpecManager.whitelist = set()
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # GatewayClient(SingletonConfigurable) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## This class manages the configuration.  It's its own singleton class so that we
 #  can share these values across all objects.  It also contains some helper
 #  methods to build request arguments out of the various config options.
@@ -1346,9 +1353,9 @@ c.NotebookApp.token = ''
 #  Default: None
 # c.GatewayClient.ws_url = None
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # TerminalManager(LoggingConfigurable) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ##
 
 ## Timeout (in seconds) in which a terminal has been inactive and ready to be

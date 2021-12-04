@@ -5,7 +5,6 @@ error_raise = False
 
 
 class TigerPreprocessorV1(ExecutePreprocessor):
-
     def __init__(self, param_file_path, **kw):
         print("=====================tiger_preprocessor.py=========================")
         super(TigerPreprocessorV1, self).__init__(**kw)

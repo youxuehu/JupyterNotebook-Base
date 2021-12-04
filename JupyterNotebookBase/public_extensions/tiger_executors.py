@@ -9,19 +9,17 @@ from traitlets.traitlets import Any
 
 class TigerPreprocessor(ExecutePreprocessor):
 
-    param_file_path = Any(
-        default_value="/ossfs/.param.conf",
-        allow_none=True,
-        help="param file"
-    ).tag(config=True)
+    param_file_path = Any(default_value="/ossfs/.param.conf", allow_none=True, help="param file").tag(config=True)
 
     def __init__(self, **kw):
         super(TigerPreprocessor, self).__init__(**kw)
         if is_new_notebook():
-            from JupyterNotebookBase.public_extensions.tiger_preprocessor_v2 import TigerPreprocessorV2 # noqa
+            from JupyterNotebookBase.public_extensions.tiger_preprocessor_v2 import TigerPreprocessorV2  # noqa
+
             self.preprocessor = TigerPreprocessorV2(param_file_path=self.param_file_path)
         else:
-            from JupyterNotebookBase.public_extensions.tiger_preprocessor_v1 import TigerPreprocessorV1 # noqa
+            from JupyterNotebookBase.public_extensions.tiger_preprocessor_v1 import TigerPreprocessorV1  # noqa
+
             self.preprocessor = TigerPreprocessorV1(param_file_path=self.param_file_path)
 
     def preprocess(self, nb, resources=None, km=None):
@@ -39,8 +37,8 @@ class TigerHTMLExporter(HTMLExporter):
 class TigerPostprocessor(PostProcessorBase):
     def postprocess(self, input):
         if is_new_notebook():
-            from JupyterNotebookBase.public_extensions.tiger_preprocessor_v2 import error_raise # noqa
+            from JupyterNotebookBase.public_extensions.tiger_preprocessor_v2 import error_raise  # noqa
         else:
-            from JupyterNotebookBase.public_extensions.tiger_preprocessor_v1 import error_raise # noqa
+            from JupyterNotebookBase.public_extensions.tiger_preprocessor_v1 import error_raise  # noqa
         if error_raise:
             sys.exit(1)

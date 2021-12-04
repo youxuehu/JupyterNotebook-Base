@@ -38,6 +38,7 @@ class HubKernelManager(IOLoopKernelManager):
             finally:
                 if client:
                     client.stop_channels()
+
         self._launch_args["inject_lines"] = lines
         yield self.executor.submit(fun)
 
@@ -48,7 +49,6 @@ class HubKernelManager(IOLoopKernelManager):
 
 
 class HubKernelManagerV2(IOLoopKernelManager):
-
     @gen.coroutine
     def start_kernel(self, **kw):
         lines = kw.pop("inject_lines", None)
@@ -56,6 +56,7 @@ class HubKernelManagerV2(IOLoopKernelManager):
 
         if lines:
             from notebook.utils import maybe_future
+
             yield maybe_future(self.inject_lines(lines))
 
     @gen.coroutine

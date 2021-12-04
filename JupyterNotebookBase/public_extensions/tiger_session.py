@@ -37,7 +37,6 @@ class HubSessionManager(SessionManager):
 
 
 class HubSessionManagerV2(SessionManager):
-
     def __init__(self, **kw):
         super(HubSessionManagerV2, self).__init__(**kw)
 
@@ -54,9 +53,10 @@ class HubSessionManagerV2(SessionManager):
                 with codecs.open(param_file_path, "r", encoding="UTF-8") as f:
                     content = f.read()
                 params = json.loads(content)
-        lines = ["name=\"zhangsan\""]
+        lines = ['name="zhangsan"']
         kernel_path = self.contents_manager.get_kernel_path(path=path)
         from notebook.utils import maybe_future
+
         kernel_id = yield maybe_future(
             self.kernel_manager.start_kernel(path=kernel_path, kernel_name=kernel_name, env=env, inject_lines=lines)
         )

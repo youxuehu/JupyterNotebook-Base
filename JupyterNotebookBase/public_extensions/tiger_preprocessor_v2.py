@@ -6,7 +6,6 @@ error_raise = False
 
 
 class TigerPreprocessorV2(ExecutePreprocessor):
-
     def __init__(self, param_file_path, **kw):
         print("=====================tiger_preprocessor_v2.py=========================")
         super(TigerPreprocessorV2, self).__init__(**kw)
@@ -27,12 +26,13 @@ class TigerPreprocessorV2(ExecutePreprocessor):
         if new_cell.outputs[0]["text"]:
             for v in new_cell.outputs[0]["text"].split("\t"):
                 try:
-                    msg = self.execute_cell(cell=new_code_cell(source="%store {}".format(v.strip())),
-                                            cell_index=index,
-                                            store_history=True).outputs[0]['text'] # noqa
+                    msg = self.execute_cell(
+                        cell=new_code_cell(source="%store {}".format(v.strip())), cell_index=index, store_history=True
+                    ).outputs[0][
+                        "text"
+                    ]  # noqa
                     print(msg)
-                except Exception: # noqa
+                except Exception:  # noqa
                     pass
         self.nb["cells"][index] = cell
         return cell, resources
-

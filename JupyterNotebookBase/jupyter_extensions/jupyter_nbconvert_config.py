@@ -1,2 +1,2 @@
 # -*- coding:utf-8 -*-
-# c.Exporter.preprocessor=['tiger_executors.TigerPreprocessor']
+c.Exporter.preprocessors = ["tiger_executors.TigerPreprocessor"]  # noqa

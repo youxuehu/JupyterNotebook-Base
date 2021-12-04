@@ -21,9 +21,7 @@ def get_notebook_kernel_id(nb_file_name):
     try:
         for s in servers:
             params = {"token": s.get("token", "")}
-            response = requests.get(
-                urljoin(s["url"], "api/sessions"),
-                params=params)
+            response = requests.get(urljoin(s["url"], "api/sessions"), params=params)
             for n in json.loads(response.text):
                 if nb_file_name in n["path"]:
                     return n["kernel"]["id"]
@@ -54,6 +52,7 @@ def get_result(kernel_client, msg_id):
     while True:
         try:
             import asyncio
+
             loop = asyncio.get_event_loop()
             msg = loop.run_until_complete(kernel_client.iopub_channel.get_msg(timeout=10))
             print("msg: %s" % msg)
@@ -78,8 +77,7 @@ def get_result(kernel_client, msg_id):
             status, res = True, outs[-1]["data"]["text/html"]
         elif "text/plain" in outs[-1]["data"]:
             status, res = True, outs[-1]["data"]["text/plain"]
-    if (outs and ("output_type" in outs[-1]) and (outs[-1]["output_type"] == "error")): # noqa
+    if outs and ("output_type" in outs[-1]) and (outs[-1]["output_type"] == "error"):  # noqa
         print("outs error %s" % outs)
         status, res = False, outs[-1]["evalue"]
     return status, res
-
