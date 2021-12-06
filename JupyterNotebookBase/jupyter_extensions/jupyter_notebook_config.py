@@ -2,6 +2,7 @@
 # Configuration file for jupyter-notebook.
 from JupyterNotebookBase.utils import common_utils
 
+c.NotebookApp.contents_manager_class = "JupyterNotebookBase.jupyter_extensions.tiger_filemanager.TigerFileManager"  # noqa
 c.NotebookApp.nbserver_extensions = {"JupyterNotebookBase.server_handler.operate_server_notebook_handler": True}  # noqa
 c.NotebookApp.disable_check_xsrf = True  # noqa
 if common_utils.is_new_notebook():  # noqa
@@ -18,6 +19,7 @@ else:
     c.MappingKernelManager.kernel_manager_class = (  # noqa
         "JupyterNotebookBase.public_extensions.tiger_km.HubKernelManager"  # noqa
     )
+c.NotebookApp.open_browser = True  # noqa
 # ------------------------------------------------------------------------------
 # Application(SingletonConfigurable) configuration
 # ------------------------------------------------------------------------------
@@ -406,7 +408,7 @@ c.NotebookApp.notebook_dir = "/Users/youxuehu/PycharmProjects/JupyterNotebook-Ba
 #  module, unless it is overridden using the --browser (NotebookApp.browser)
 #  configuration option.
 #  Default: True
-c.NotebookApp.open_browser = False  # noqa
+
 
 ## Hashed password to use for web authentication.
 #

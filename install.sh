@@ -10,3 +10,4 @@ rm -rf build
 rm -rf dist
 rm -rf JupyterNotebookBase.egg-info
 JupyterNotebookBase_setup_jupyter
+jupyter notebook
