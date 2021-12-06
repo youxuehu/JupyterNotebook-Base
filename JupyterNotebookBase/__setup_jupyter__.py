@@ -8,5 +8,5 @@ jupyter_nbconvert_config = os.path.join(current_dir, "jupyter_nbconvert_config.p
 
 
 def main():
-    shutil.copy(os.path.join(jupyter_notebook_config, os.getenv("JUPYTER_CONFIG_HOME"), "jupyter_notebook_config.py"))
-    shutil.copy(os.path.join(jupyter_nbconvert_config, os.getenv("JUPYTER_CONFIG_HOME"), "jupyter_nbconvert_config.py"))
+    shutil.copy(jupyter_notebook_config, os.path.join(os.getenv("JUPYTER_CONFIG_HOME"), "jupyter_notebook_config.py"))
+    shutil.copy(jupyter_nbconvert_config, os.path.join(os.getenv("JUPYTER_CONFIG_HOME"), "jupyter_nbconvert_config.py"))

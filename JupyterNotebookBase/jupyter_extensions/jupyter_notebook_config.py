@@ -4,18 +4,18 @@ from JupyterNotebookBase.utils import common_utils
 
 c.NotebookApp.nbserver_extensions = {"JupyterNotebookBase.server_handler.operate_server_notebook_handler": True}  # noqa
 c.NotebookApp.disable_check_xsrf = True  # noqa
-if common_utils.is_new_notebook():
-    c.NotebookApp.session_manager_class = (
+if common_utils.is_new_notebook():  # noqa
+    c.NotebookApp.session_manager_class = (  # noqa
         "JupyterNotebookBase.public_extensions.tiger_session.HubSessionManagerV2"  # noqa
     )
-    c.MappingKernelManager.kernel_manager_class = (
+    c.MappingKernelManager.kernel_manager_class = (  # noqa
         "JupyterNotebookBase.public_extensions.tiger_km.HubKernelManagerV2"  # noqa
     )
 else:
-    c.NotebookApp.session_manager_class = (
+    c.NotebookApp.session_manager_class = (  # noqa
         "JupyterNotebookBase.public_extensions.tiger_session.HubSessionManager"  # noqa
     )
-    c.MappingKernelManager.kernel_manager_class = (
+    c.MappingKernelManager.kernel_manager_class = (  # noqa
         "JupyterNotebookBase.public_extensions.tiger_km.HubKernelManager"  # noqa
     )
 # ------------------------------------------------------------------------------

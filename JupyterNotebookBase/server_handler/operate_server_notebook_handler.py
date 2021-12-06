@@ -7,7 +7,7 @@ from tornado import gen, concurrent
 # from jupyter_client.asynchronous.client import AsyncKernelClient
 from jupyter_client.blocking.client import BlockingKernelClient
 from notebook.utils import url_path_join
-from JupyterNotebookBase.utils import notebook_kernel_util
+from JupyterNotebookBase.utils import notebook_kernel_utils
 
 
 class OperateNotebookHandler(IPythonHandler):
@@ -47,7 +47,7 @@ class OperateNotebookHandler(IPythonHandler):
     @concurrent.run_on_executor
     def update_aistudio_dataframe(self):
         nb_file_name = self.get_request_param("fileName")
-        kernel_id = notebook_kernel_util.get_notebook_kernel_id(nb_file_name)
+        kernel_id = notebook_kernel_utils.get_notebook_kernel_id(nb_file_name)
         print("kernel_id: %s" % kernel_id)
         node_id = self.get_request_param("nodeId")
         param_file = "/root/.%s_param.conf" % node_id
@@ -60,7 +60,7 @@ class OperateNotebookHandler(IPythonHandler):
         print("inject line length %s" % len(lines))
         kc = BlockingKernelClient(connection_file="/Users/youxuehu/Library/Jupyter/runtime/kernel-%s.json" % kernel_id)
         kc.load_connection_file()
-        status, outs = notebook_kernel_util.run_code_with_kernel(kc, lines)
+        status, outs = notebook_kernel_utils.run_code_with_kernel(kc, lines)
         return {"status": status, "outs": outs}
 
 
