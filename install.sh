@@ -10,4 +10,4 @@ rm -rf build
 rm -rf dist
 rm -rf JupyterNotebookBase.egg-info
 JupyterNotebookBase_setup_jupyter
-jupyter notebook
+nohup jupyter notebook >> /Users/youxuehu/PycharmProjects/JupyterNotebook-Base/jupyter.log 2>&1 & echo $! > /Users/youxuehu/PycharmProjects/JupyterNotebook-Base/jupyter.pid
