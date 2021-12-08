@@ -10,3 +10,8 @@ class TigerFileManager(LargeFileManager):
         self.log.info("Welcome to TigerFileManager.get > content at %s" % content)
         self.log.info("Welcome to TigerFileManager.get > type at %s" % type)
         self.log.info("Welcome to TigerFileManager.get > format at %s" % format)
+        return super(TigerFileManager, self).get(path, content, type, format)
+
+    def save(self, model, path=''):
+        self.log.info("Welcome to TigerFileManager.save.")
+        super(TigerFileManager, self).save(model, path)
