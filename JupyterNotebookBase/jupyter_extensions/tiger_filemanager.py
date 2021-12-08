@@ -14,4 +14,4 @@ class TigerFileManager(LargeFileManager):
 
     def save(self, model, path=''):
         self.log.info("Welcome to TigerFileManager.save.")
-        super(TigerFileManager, self).save(model, path)
+        return super(TigerFileManager, self).save(model, path)
