@@ -57,7 +57,9 @@ class OperateNotebookHandler(IPythonHandler):  # noqa
         except Exception as e:  # noqa
             lines = ["import time\nimport uuid\na = time.time()\nb = uuid.uuid4()"]
         print("inject line length %s" % len(lines))
-        kc = BlockingKernelClient(connection_file="/Users/youxuehu/Library/Jupyter/runtime/kernel-%s.json" % kernel_id)  # noqa
+        kc = BlockingKernelClient(
+            connection_file="/Users/youxuehu/Library/Jupyter/runtime/kernel-%s.json" % kernel_id
+        )  # noqa
         kc.load_connection_file()
         status, outs = notebook_kernel_utils.run_code_with_kernel(kc, lines)
         return {"status": status, "outs": outs}

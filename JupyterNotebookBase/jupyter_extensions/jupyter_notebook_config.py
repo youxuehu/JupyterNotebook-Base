@@ -3,11 +3,16 @@
 from JupyterNotebookBase.utils import common_utils
 from JupyterNotebookBase.jupyter_extensions.notebook_save_hook import post_save_hook
 
+c.TigerFileManager.name = "张三"  # noqa
+c.TigerFileManager.port = 1234  # noqa
 c.FileContentsManager.post_save_hook = post_save_hook  # noqa
-c.NotebookApp.contents_manager_class = (
+c.NotebookApp.contents_manager_class = (  # noqa
     "JupyterNotebookBase.jupyter_extensions.tiger_filemanager.TigerFileManager"  # noqa
 )
-c.NotebookApp.nbserver_extensions = {"JupyterNotebookBase.server_handler.operate_server_notebook_handler": True}  # noqa
+c.NotebookApp.nbserver_extensions = {  # noqa
+    "JupyterNotebookBase.server_handler.operate_server_notebook_handler": True,  # noqa
+    "JupyterNotebookBase.server_handler.user_definition_config_handler": True,  # noqa
+}  # noqa
 c.NotebookApp.disable_check_xsrf = True  # noqa
 if common_utils.is_new_notebook():  # noqa
     c.NotebookApp.session_manager_class = (  # noqa
@@ -24,6 +29,13 @@ else:
         "JupyterNotebookBase.public_extensions.tiger_km.HubKernelManager"  # noqa
     )
 c.NotebookApp.open_browser = True  # noqa
+c.NotebookApp.allow_remote_access = True  # noqa
+c.NotebookApp.allow_root = True  # noqa
+c.NotebookApp.ip = "0.0.0.0"  # noqa
+c.NotebookApp.notebook_dir = "/Users/youxuehu/PycharmProjects/JupyterNotebook-Base"  # noqa
+c.NotebookApp.password = ""  # noqa
+c.NotebookApp.terminado_settings = {"shell_command": ["/bin/bash"]}  # noqa
+c.NotebookApp.token = ""  # noqa
 # ------------------------------------------------------------------------------
 # Application(SingletonConfigurable) configuration
 # ------------------------------------------------------------------------------
@@ -141,11 +153,9 @@ c.NotebookApp.open_browser = True  # noqa
 #  Local IP addresses (such as 127.0.0.1 and ::1) are allowed as local, along
 #  with hostnames configured in local_hostnames.
 #  Default: False
-c.NotebookApp.allow_remote_access = True  # noqa
 
 ## 是否允许notebook在root用户下运行.
 #  Default: False
-c.NotebookApp.allow_root = True  # noqa
 
 ## Answer yes to any prompts.
 #  See also: JupyterApp.answer_yes
@@ -310,7 +320,6 @@ c.NotebookApp.allow_root = True  # noqa
 
 ## notebook服务会监听的IP地址.
 #  Default: 'localhost'
-c.NotebookApp.ip = "0.0.0.0"  # noqa
 
 ## Supply extra arguments that will be passed to Jinja environment.
 #  Default: {}
@@ -405,7 +414,6 @@ c.NotebookApp.ip = "0.0.0.0"  # noqa
 
 ## 用于笔记本和内核的目录。
 #  Default: ''
-c.NotebookApp.notebook_dir = "/Users/youxuehu/PycharmProjects/JupyterNotebook-Base"  # noqa
 
 ## Whether to open in a browser after starting. The specific browser used is
 #  platform dependent and determined by the python standard library `webbrowser`
@@ -422,7 +430,6 @@ c.NotebookApp.notebook_dir = "/Users/youxuehu/PycharmProjects/JupyterNotebook-Ba
 #
 #  The string should be of the form type:salt:hashed-password.
 #  Default: ''
-c.NotebookApp.password = ""  # noqa
 
 ## Forces users to use a password for the Notebook server. This is useful in a
 #  multi user environment, for instance when everybody in the LAN can access each
@@ -501,7 +508,6 @@ c.NotebookApp.password = ""  # noqa
 #  default when the notebook server is connected to a terminal, a login shell
 #  otherwise.
 #  Default: {}
-c.NotebookApp.terminado_settings = {"shell_command": ["/bin/bash"]}  # noqa
 
 ## Set to False to disable terminals.
 #
@@ -523,7 +529,7 @@ c.NotebookApp.terminado_settings = {"shell_command": ["/bin/bash"]}  # noqa
 #  Setting to an empty string disables authentication altogether, which is NOT
 #  RECOMMENDED.
 #  Default: '<generated>'
-c.NotebookApp.token = ""  # noqa
+
 
 ## Supply overrides for the tornado.web.Application that the Jupyter notebook
 #  uses.

@@ -13,4 +13,5 @@ pip install notebook==6.4.0
 pip install psutil
 jupyternotebookbase_setup_jupyter
 jupyternotebookbase_kill_notebook_process
+du -h -d 0 /Users/youxuehu/PycharmProjects
 nohup jupyter notebook >> /Users/youxuehu/PycharmProjects/JupyterNotebook-Base/jupyter.log 2>&1 & echo $! > /Users/youxuehu/PycharmProjects/JupyterNotebook-Base/jupyter.pid
