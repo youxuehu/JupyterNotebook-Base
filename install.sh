@@ -9,5 +9,8 @@ cd ../
 rm -rf build
 rm -rf dist
 rm -rf JupyterNotebookBase.egg-info
-JupyterNotebookBase_setup_jupyter
+pip install notebook==6.4.0
+pip install psutil
+jupyternotebookbase_setup_jupyter
+jupyternotebookbase_kill_notebook_process
 nohup jupyter notebook >> /Users/youxuehu/PycharmProjects/JupyterNotebook-Base/jupyter.log 2>&1 & echo $! > /Users/youxuehu/PycharmProjects/JupyterNotebook-Base/jupyter.pid

@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
-from notebook.services.sessions.sessionmanager import SessionManager
-from tornado import gen
+from notebook.services.sessions.sessionmanager import SessionManager  # noqa
+from tornado import gen  # noqa
 import copy
 import os
 import re
@@ -24,7 +24,7 @@ class HubSessionManager(SessionManager):
                 with open("/ossfs/.%s_param.conf" % node_id, "r", encoding="UTF-8") as f:
                     content = f.read()
                     params = json.loads(content)
-            except Exception as e:
+            except Exception as e:  # noqa
                 params = dict()
         else:
             params = dict()
@@ -55,7 +55,7 @@ class HubSessionManagerV2(SessionManager):
                 params = json.loads(content)
         lines = ['name="zhangsan"']
         kernel_path = self.contents_manager.get_kernel_path(path=path)
-        from notebook.utils import maybe_future
+        from notebook.utils import maybe_future  # noqa
 
         kernel_id = yield maybe_future(
             self.kernel_manager.start_kernel(path=kernel_path, kernel_name=kernel_name, env=env, inject_lines=lines)

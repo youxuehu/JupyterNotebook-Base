@@ -1,19 +1,19 @@
 # -*- coding:utf-8 -*-
 import json
-import requests
-from requests.compat import urljoin
-from nbformat.v4 import output_from_msg
+import requests  # noqa
+from requests.compat import urljoin  # noqa
+from nbformat.v4 import output_from_msg  # noqa
 
 try:
-    from notebook.notebookapp import list_running_servers
+    from notebook.notebookapp import list_running_servers  # noqa
 
 except ImportError:
     import warnings
-    from IPython.utils.shimmodule import ShimWarning
+    from IPython.utils.shimmodule import ShimWarning  # noqa
 
     with warnings.catch_warnings():
         warnings.simplefilter("ignore", category=ShimWarning)
-        from IPython.html.notebookapp import list_running_servers
+        from IPython.html.notebookapp import list_running_servers  # noqa
 
 
 def get_notebook_kernel_id(nb_file_name):
@@ -69,7 +69,7 @@ def get_result(kernel_client, msg_id):
                 continue
             else:
                 outs.append(output_from_msg(msg))
-        except Exception:
+        except Exception:  # noqa
             pass
 
     if outs and "data" in outs[-1]:
@@ -79,5 +79,5 @@ def get_result(kernel_client, msg_id):
             status, res = True, outs[-1]["data"]["text/plain"]
     if outs and ("output_type" in outs[-1]) and (outs[-1]["output_type"] == "error"):  # noqa
         print("outs error %s" % outs)
-        status, res = False, outs[-1]["evalue"]
+        status, res = False, outs[-1]["evalue"]  # noqa
     return status, res

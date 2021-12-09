@@ -20,5 +20,10 @@ setup(
     packages=find_packages(where=".", exclude=exclude_file_patterns),
     package_data={"": ["*.so"]},
     include_package_data=True,
-    entry_points={"console_scripts": ["JupyterNotebookBase_setup_jupyter=JupyterNotebookBase.__setup_jupyter__:main"]},
+    entry_points={
+        "console_scripts": [
+            "jupyternotebookbase_setup_jupyter=JupyterNotebookBase.__setup_jupyter__:main",  # noqa
+            "jupyternotebookbase_kill_notebook_process=JupyterNotebookBase.__kill_notebook_process__:main",  # noqa
+        ]
+    },
 )

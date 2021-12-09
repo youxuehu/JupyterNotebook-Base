@@ -1,8 +1,8 @@
 # -*- coding:utf-8 -*-
-import requests
+import requests  # noqa
 import json
 
-url = "http://localhost:8888/operate"
+url = "http://localhost:8888/operate"  # noqa
 payload = {"method": "updateAIStudioDataframe", "fileName": "Jupyter_Notebook_Base2.ipynb", "nodeId": "123"}
 headers = {"content-type": "application/json"}
 

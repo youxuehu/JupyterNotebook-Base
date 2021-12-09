@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 from JupyterNotebookBase.utils.log_utils import get_logger
 
-log = get_logger()
+log = get_logger(__name__)
 
 
 def post_save_hook(os_path, model, contents_manager):

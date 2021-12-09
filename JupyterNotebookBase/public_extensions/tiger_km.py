@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 from concurrent.futures import ThreadPoolExecutor
 
-from tornado import gen
+from tornado import gen  # noqa
 from jupyter_client.ioloop import IOLoopKernelManager
 
 
@@ -55,7 +55,7 @@ class HubKernelManagerV2(IOLoopKernelManager):
         super(HubKernelManagerV2, self).start_kernel(**kw)
 
         if lines:
-            from notebook.utils import maybe_future
+            from notebook.utils import maybe_future  # noqa
 
             yield maybe_future(self.inject_lines(lines))
 

@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
-from nbconvert.preprocessors.execute import ExecutePreprocessor
-from nbformat.v4.nbbase import new_code_cell
+from nbconvert.preprocessors.execute import ExecutePreprocessor  # noqa
+from nbformat.v4.nbbase import new_code_cell  # noqa
 
 error_raise = False
 
@@ -11,12 +11,12 @@ class TigerPreprocessorV2(ExecutePreprocessor):
         super(TigerPreprocessorV2, self).__init__(**kw)
         self.param_file_path = param_file_path
 
-    def preprocess(self, nb, resources=None, km=None):
+    def preprocess(self, nb, resources=None, km=None):  # noqa
         print("param_file_path: %s" % self.param_file_path)
         print("================TigerPreprocessorV2=============preprocess========================================")
         return super(TigerPreprocessorV2, self).preprocess(nb, resources, km)
 
-    def preprocess_cell(self, cell, resources, index):
+    def preprocess_cell(self, cell, resources, index, **kwargs):  # noqa
         print("================TigerPreprocessorV2=============preprocess_cell===================================")
         cell, resources = super(TigerPreprocessorV2, self).preprocess_cell(cell, resources, index)
         new_cell = self.execute_cell(cell=new_code_cell(source="%who"), cell_index=index, store_history=True)

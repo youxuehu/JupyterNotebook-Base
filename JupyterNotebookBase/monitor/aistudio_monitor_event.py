@@ -1,12 +1,12 @@
 # -*- coding:utf-8 -*-
-import pyinotify
+import pyinotify  # noqa
 import asyncio
 from JupyterNotebookBase.utils.log_utils import get_logger
 
-log = get_logger()
+log = get_logger(__name__)
 
 
-def handle_read_callback(notifier):
+def handle_read_callback(notifier):  # noqa
     """
     Just stop receiving IO read events after the first
     iteration (unrealistic example).
@@ -18,8 +18,7 @@ def handle_read_callback(notifier):
 
 wm = pyinotify.WatchManager()
 loop = asyncio.get_event_loop()
-notifier = pyinotify.AsyncioNotifier(wm, loop,
-                                     callback=handle_read_callback)
+notifier = pyinotify.AsyncioNotifier(wm, loop, callback=handle_read_callback)
 """
 @cvar IN_ACCESS: File was accessed.
     @type IN_ACCESS: int
@@ -73,6 +72,6 @@ notifier = pyinotify.AsyncioNotifier(wm, loop,
     @type ALL_EVENTS: int
 """
 multi_event = pyinotify.IN_CREATE | pyinotify.IN_MODIFY
-wm.add_watch('/tmp', multi_event)
+wm.add_watch("/tmp", multi_event)
 loop.run_forever()
 notifier.stop()

@@ -1,16 +1,15 @@
 # -*- coding:utf-8 -*-
-from notebook.base.handlers import IPythonHandler
-from concurrent.futures import ThreadPoolExecutor
+from notebook.base.handlers import IPythonHandler  # noqa
+from concurrent.futures import ThreadPoolExecutor  # noqa
 import json
-from tornado import gen, concurrent
+from tornado import gen, concurrent  # noqa
 
-# from jupyter_client.asynchronous.client import AsyncKernelClient
 from jupyter_client.blocking.client import BlockingKernelClient
-from notebook.utils import url_path_join
+from notebook.utils import url_path_join  # noqa
 from JupyterNotebookBase.utils import notebook_kernel_utils
 
 
-class OperateNotebookHandler(IPythonHandler):
+class OperateNotebookHandler(IPythonHandler):  # noqa
 
     executor = ThreadPoolExecutor(4)
 
@@ -34,7 +33,7 @@ class OperateNotebookHandler(IPythonHandler):
         res = {"success": "true"}
         try:
             method = self.get_request_param("method")
-            if method == "updateAIStudioDataframe":
+            if method == "updateAIStudioDataframe":  # noqa
                 res = yield self.update_aistudio_dataframe()
                 res.update(res)
             else:
@@ -45,7 +44,7 @@ class OperateNotebookHandler(IPythonHandler):
         self.write(res)
 
     @concurrent.run_on_executor
-    def update_aistudio_dataframe(self):
+    def update_aistudio_dataframe(self):  # noqa
         nb_file_name = self.get_request_param("fileName")
         kernel_id = notebook_kernel_utils.get_notebook_kernel_id(nb_file_name)
         print("kernel_id: %s" % kernel_id)
@@ -55,10 +54,10 @@ class OperateNotebookHandler(IPythonHandler):
             with open(param_file, "r", encoding="UTF-8") as f:
                 content = f.read()
             lines = content
-        except Exception as e:
+        except Exception as e:  # noqa
             lines = ["import time\nimport uuid\na = time.time()\nb = uuid.uuid4()"]
         print("inject line length %s" % len(lines))
-        kc = BlockingKernelClient(connection_file="/Users/youxuehu/Library/Jupyter/runtime/kernel-%s.json" % kernel_id)
+        kc = BlockingKernelClient(connection_file="/Users/youxuehu/Library/Jupyter/runtime/kernel-%s.json" % kernel_id)  # noqa
         kc.load_connection_file()
         status, outs = notebook_kernel_utils.run_code_with_kernel(kc, lines)
         return {"status": status, "outs": outs}

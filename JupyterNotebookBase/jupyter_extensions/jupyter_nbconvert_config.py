@@ -2,9 +2,9 @@
 # Configuration file for jupyter-nbconvert.
 c.Exporter.preprocessors = ["tiger_executors.TigerPreprocessor"]  # noqa
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Application(SingletonConfigurable) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## This is an application.
 
 ## The date format used by logging formatters for %(asctime)s
@@ -28,9 +28,9 @@ c.Exporter.preprocessors = ["tiger_executors.TigerPreprocessor"]  # noqa
 #  Default: False
 # c.Application.show_config_json = False
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # JupyterApp(Application) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Base class for Jupyter applications
 
 ## Answer yes to any prompts.
@@ -69,9 +69,9 @@ c.Exporter.preprocessors = ["tiger_executors.TigerPreprocessor"]  # noqa
 #  See also: Application.show_config_json
 # c.JupyterApp.show_config_json = False
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # NbConvertApp(JupyterApp) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## This application is used to convert notebook files (*.ipynb)
 #          to various other formats.
 #
@@ -157,9 +157,9 @@ c.Exporter.preprocessors = ["tiger_executors.TigerPreprocessor"]  # noqa
 #  Default: 'FilesWriter'
 # c.NbConvertApp.writer_class = 'FilesWriter'
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # NbConvertBase(LoggingConfigurable) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Global configurable class for shared config
 #
 #      Useful for display data priority that might be used by many transformers
@@ -174,9 +174,9 @@ c.Exporter.preprocessors = ["tiger_executors.TigerPreprocessor"]  # noqa
 #  Default: ['text/html', 'application/pdf', 'text/latex', 'image/svg+xml', 'image/png', 'image/jpeg', 'text/markdown', 'text/plain']
 # c.NbConvertBase.display_data_priority = ['text/html', 'application/pdf', 'text/latex', 'image/svg+xml', 'image/png', 'image/jpeg', 'text/markdown', 'text/plain']
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Exporter(LoggingConfigurable) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Class containing methods that sequentially run a list of preprocessors on a
 #  NotebookNode object and then return the modified NotebookNode object and
 #  accompanying resources dict.
@@ -198,9 +198,9 @@ c.Exporter.preprocessors = ["tiger_executors.TigerPreprocessor"]  # noqa
 #  Default: []
 # c.Exporter.preprocessors = []
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # TemplateExporter(Exporter) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Exports notebooks into other file formats.  Uses Jinja 2 templating engine to
 #  output new formats.  Inherit from this class if you are creating a new
 #  template type along with new filters/preprocessors.  If the filters/
@@ -301,9 +301,9 @@ c.Exporter.preprocessors = ["tiger_executors.TigerPreprocessor"]  # noqa
 #  Default: ['.']
 # c.TemplateExporter.template_paths = ['.']
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # ASCIIDocExporter(TemplateExporter) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Exports to an ASCIIDoc document (.asciidoc)
 
 ## List of preprocessors available by default, by name, namespace,
@@ -388,9 +388,9 @@ c.Exporter.preprocessors = ["tiger_executors.TigerPreprocessor"]  # noqa
 #  See also: TemplateExporter.template_paths
 # c.ASCIIDocExporter.template_paths = ['.']
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # HTMLExporter(TemplateExporter) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Exports a basic HTML document.  This exporter assists with the export of HTML.
 #  Inherit from it if you are writing your own HTML template and need custom
 #  preprocessors/filters.  If you don't need custom preprocessors/ filters, just
@@ -510,9 +510,9 @@ c.Exporter.preprocessors = ["tiger_executors.TigerPreprocessor"]  # noqa
 #  Default: 'light'
 # c.HTMLExporter.theme = 'light'
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # LatexExporter(TemplateExporter) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Exports to a Latex template.  Inherit from this class if your template is
 #  LaTeX based and you need custom transformers/filters. If you don't need custom
 #  transformers/filters, just change the  'template_file' config option.  Place
@@ -600,9 +600,9 @@ c.Exporter.preprocessors = ["tiger_executors.TigerPreprocessor"]  # noqa
 #  See also: TemplateExporter.template_paths
 # c.LatexExporter.template_paths = ['.']
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # MarkdownExporter(TemplateExporter) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Exports to a markdown document (.md)
 
 ## List of preprocessors available by default, by name, namespace,
@@ -687,9 +687,9 @@ c.Exporter.preprocessors = ["tiger_executors.TigerPreprocessor"]  # noqa
 #  See also: TemplateExporter.template_paths
 # c.MarkdownExporter.template_paths = ['.']
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # NotebookExporter(Exporter) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Exports to an IPython notebook.
 #
 #      This is useful when you want to use nbconvert's preprocessors to operate on
@@ -717,9 +717,9 @@ c.Exporter.preprocessors = ["tiger_executors.TigerPreprocessor"]  # noqa
 #  See also: Exporter.preprocessors
 # c.NotebookExporter.preprocessors = []
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # PDFExporter(LatexExporter) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Writer designed to write to PDF files.
 #
 #      This inherits from `LatexExporter`. It creates a LaTeX file in
@@ -824,9 +824,9 @@ c.Exporter.preprocessors = ["tiger_executors.TigerPreprocessor"]  # noqa
 #  Default: False
 # c.PDFExporter.verbose = False
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # PythonExporter(TemplateExporter) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Exports a Python code file. Note that the file produced will have a shebang of
 #  '#!/usr/bin/env python' regardless of the actual python version used in the
 #  notebook.
@@ -913,9 +913,9 @@ c.Exporter.preprocessors = ["tiger_executors.TigerPreprocessor"]  # noqa
 #  See also: TemplateExporter.template_paths
 # c.PythonExporter.template_paths = ['.']
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # RSTExporter(TemplateExporter) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Exports reStructuredText documents.
 
 ## List of preprocessors available by default, by name, namespace,
@@ -1000,9 +1000,9 @@ c.Exporter.preprocessors = ["tiger_executors.TigerPreprocessor"]  # noqa
 #  See also: TemplateExporter.template_paths
 # c.RSTExporter.template_paths = ['.']
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # ScriptExporter(TemplateExporter) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## List of preprocessors available by default, by name, namespace,
 #  See also: Exporter.default_preprocessors
 # c.ScriptExporter.default_preprocessors = ['nbconvert.preprocessors.TagRemovePreprocessor', 'nbconvert.preprocessors.RegexRemovePreprocessor', 'nbconvert.preprocessors.ClearOutputPreprocessor', 'nbconvert.preprocessors.ExecutePreprocessor', 'nbconvert.preprocessors.coalesce_streams', 'nbconvert.preprocessors.SVG2PDFPreprocessor', 'nbconvert.preprocessors.LatexPreprocessor', 'nbconvert.preprocessors.HighlightMagicsPreprocessor', 'nbconvert.preprocessors.ExtractOutputPreprocessor', 'nbconvert.preprocessors.ClearMetadataPreprocessor']
@@ -1085,9 +1085,9 @@ c.Exporter.preprocessors = ["tiger_executors.TigerPreprocessor"]  # noqa
 #  See also: TemplateExporter.template_paths
 # c.ScriptExporter.template_paths = ['.']
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # SlidesExporter(HTMLExporter) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Exports HTML slides with reveal.js
 
 ## The text used as the text for anchor links.
@@ -1243,9 +1243,9 @@ c.Exporter.preprocessors = ["tiger_executors.TigerPreprocessor"]  # noqa
 #  See also: HTMLExporter.theme
 # c.SlidesExporter.theme = 'light'
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # WebPDFExporter(HTMLExporter) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Writer designed to write to PDF files.
 #
 #      This inherits from :class:`HTMLExporter`. It creates the HTML using the
@@ -1388,9 +1388,9 @@ c.Exporter.preprocessors = ["tiger_executors.TigerPreprocessor"]  # noqa
 #  See also: HTMLExporter.theme
 # c.WebPDFExporter.theme = 'light'
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Preprocessor(NbConvertBase) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## A configurable preprocessor
 #
 #     Inherit from this class if you wish to have configurability for your
@@ -1418,9 +1418,9 @@ c.Exporter.preprocessors = ["tiger_executors.TigerPreprocessor"]  # noqa
 #  Default: False
 # c.Preprocessor.enabled = False
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # CSSHTMLHeaderPreprocessor(Preprocessor) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Preprocessor used to pre-process notebook for HTML output.  Adds IPython
 #  notebook front-end CSS and Pygments CSS to HTML output.
 
@@ -1444,9 +1444,9 @@ c.Exporter.preprocessors = ["tiger_executors.TigerPreprocessor"]  # noqa
 #  Default: <class 'jupyterlab_pygments.style.JupyterStyle'>
 # c.CSSHTMLHeaderPreprocessor.style = <class 'jupyterlab_pygments.style.JupyterStyle'>
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # ClearMetadataPreprocessor(Preprocessor) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Removes all the metadata from all code cells in a notebook.
 
 ## Flag to choose if cell metadata is to be cleared in addition to notebook
@@ -1483,9 +1483,9 @@ c.Exporter.preprocessors = ["tiger_executors.TigerPreprocessor"]  # noqa
 #  Default: {('language_info', 'name')}
 # c.ClearMetadataPreprocessor.preserve_nb_metadata_mask = {('language_info', 'name')}
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # ClearOutputPreprocessor(Preprocessor) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Removes the output from all code cells in a notebook.
 
 ## Deprecated default highlight language as of 5.0, please use language_info
@@ -1503,9 +1503,9 @@ c.Exporter.preprocessors = ["tiger_executors.TigerPreprocessor"]  # noqa
 #  Default: {'collapsed', 'scrolled'}
 # c.ClearOutputPreprocessor.remove_metadata_fields = {'collapsed', 'scrolled'}
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # ConvertFiguresPreprocessor(Preprocessor) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Converts all of the outputs in a notebook from one format to another.
 
 ## Deprecated default highlight language as of 5.0, please use language_info
@@ -1528,9 +1528,9 @@ c.Exporter.preprocessors = ["tiger_executors.TigerPreprocessor"]  # noqa
 #  Default: ''
 # c.ConvertFiguresPreprocessor.to_format = ''
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # NotebookClient(LoggingConfigurable) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Encompasses a Client for executing cells in a notebook
 
 ## List of error names which won't stop the execution. Use this if the
@@ -1654,9 +1654,9 @@ c.Exporter.preprocessors = ["tiger_executors.TigerPreprocessor"]  # noqa
 #  Default: None
 # c.NotebookClient.timeout_func = None
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # ExecutePreprocessor(Preprocessor, NotebookClient) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Executes all the cells in a notebook
 
 ##
@@ -1738,9 +1738,9 @@ c.Exporter.preprocessors = ["tiger_executors.TigerPreprocessor"]  # noqa
 #  See also: NotebookClient.timeout_func
 # c.ExecutePreprocessor.timeout_func = None
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # ExtractOutputPreprocessor(Preprocessor) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Extracts all of the outputs from the notebook file.  The extracted outputs are
 #  returned in the 'resources' dictionary.
 
@@ -1762,9 +1762,9 @@ c.Exporter.preprocessors = ["tiger_executors.TigerPreprocessor"]  # noqa
 #  Default: '{unique_key}_{cell_index}_{index}{extension}'
 # c.ExtractOutputPreprocessor.output_filename_template = '{unique_key}_{cell_index}_{index}{extension}'
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # HighlightMagicsPreprocessor(Preprocessor) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Detects and tags code cells that use a different languages than Python.
 
 ## Deprecated default highlight language as of 5.0, please use language_info
@@ -1784,9 +1784,9 @@ c.Exporter.preprocessors = ["tiger_executors.TigerPreprocessor"]  # noqa
 #  Default: {}
 # c.HighlightMagicsPreprocessor.languages = {}
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # LatexPreprocessor(Preprocessor) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Preprocessor for latex destined documents.
 #
 #      Mainly populates the ``latex`` key in the resources dict,
@@ -1808,9 +1808,9 @@ c.Exporter.preprocessors = ["tiger_executors.TigerPreprocessor"]  # noqa
 #  Default: 'default'
 # c.LatexPreprocessor.style = 'default'
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # RegexRemovePreprocessor(Preprocessor) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Removes cells from a notebook that match one or more regular expression.
 #
 #  For each cell, the preprocessor checks whether its contents match the regular
@@ -1849,9 +1849,9 @@ c.Exporter.preprocessors = ["tiger_executors.TigerPreprocessor"]  # noqa
 #  Default: []
 # c.RegexRemovePreprocessor.patterns = []
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # SVG2PDFPreprocessor(ConvertFiguresPreprocessor) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Converts all of the outputs in a notebook from SVG to PDF.
 
 ## The command to use for converting SVG to PDF
@@ -1897,9 +1897,9 @@ c.Exporter.preprocessors = ["tiger_executors.TigerPreprocessor"]  # noqa
 #  See also: ConvertFiguresPreprocessor.to_format
 # c.SVG2PDFPreprocessor.to_format = ''
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # TagRemovePreprocessor(Preprocessor) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Removes inputs, outputs, or cells from a notebook that have tags that
 #  designate they are to be removed prior to exporting the notebook.
 #
@@ -1952,9 +1952,9 @@ c.Exporter.preprocessors = ["tiger_executors.TigerPreprocessor"]  # noqa
 #  Default: set()
 # c.TagRemovePreprocessor.remove_single_output_tags = set()
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # WriterBase(NbConvertBase) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Consumes output from nbconvert export...() methods and writes to a
 #      useful location.
 
@@ -1972,9 +1972,9 @@ c.Exporter.preprocessors = ["tiger_executors.TigerPreprocessor"]  # noqa
 #  Default: []
 # c.WriterBase.files = []
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # DebugWriter(WriterBase) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Consumes output from nbconvert export...() methods and writes useful
 #      debugging information to the stdout.  The information includes a list of
 #      resources that were extracted from the notebook(s) during export.
@@ -1992,9 +1992,9 @@ c.Exporter.preprocessors = ["tiger_executors.TigerPreprocessor"]  # noqa
 #  See also: WriterBase.files
 # c.DebugWriter.files = []
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # FilesWriter(WriterBase) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Consumes nbconvert output and produces files.
 
 ## Directory to write output(s) to. Defaults
@@ -2025,9 +2025,9 @@ c.Exporter.preprocessors = ["tiger_executors.TigerPreprocessor"]  # noqa
 #  Default: ''
 # c.FilesWriter.relpath = ''
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # StdoutWriter(WriterBase) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Consumes output from nbconvert export...() methods and writes to the
 #      stdout stream.
 
@@ -2044,9 +2044,9 @@ c.Exporter.preprocessors = ["tiger_executors.TigerPreprocessor"]  # noqa
 #  See also: WriterBase.files
 # c.StdoutWriter.files = []
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # PostProcessorBase(NbConvertBase) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Deprecated default highlight language as of 5.0, please use language_info
 #  metadata instead
 #  See also: NbConvertBase.default_language
@@ -2056,9 +2056,9 @@ c.Exporter.preprocessors = ["tiger_executors.TigerPreprocessor"]  # noqa
 #  See also: NbConvertBase.display_data_priority
 # c.PostProcessorBase.display_data_priority = ['text/html', 'application/pdf', 'text/latex', 'image/svg+xml', 'image/png', 'image/jpeg', 'text/markdown', 'text/plain']
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # ServePostProcessor(PostProcessorBase) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Post processor designed to serve files
 #
 #      Proxies reveal.js requests to a CDN if no local reveal.js is present

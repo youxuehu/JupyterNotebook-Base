@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-from notebook._version import __version__
+from notebook._version import __version__  # noqa
 
 
 def is_new_notebook():

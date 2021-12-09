@@ -1,10 +1,10 @@
 # -*- coding:utf-8 -*-
 import sys
-from nbconvert import HTMLExporter
-from nbconvert.postprocessors import PostProcessorBase
-from JupyterNotebookBase.utils.common_utils import is_new_notebook
-from nbconvert.preprocessors.execute import ExecutePreprocessor
-from traitlets.traitlets import Any
+from nbconvert import HTMLExporter  # noqa
+from nbconvert.postprocessors import PostProcessorBase  # noqa
+from JupyterNotebookBase.utils.common_utils import is_new_notebook  # noqa
+from nbconvert.preprocessors.execute import ExecutePreprocessor  # noqa
+from traitlets.traitlets import Any  # noqa
 
 
 class TigerPreprocessor(ExecutePreprocessor):
@@ -22,10 +22,10 @@ class TigerPreprocessor(ExecutePreprocessor):
 
             self.preprocessor = TigerPreprocessorV1(param_file_path=self.param_file_path)
 
-    def preprocess(self, nb, resources=None, km=None):
+    def preprocess(self, nb, resources=None, km=None):  # noqa
         return self.preprocessor.preprocess(nb, resources, km)
 
-    def preprocess_cell(self, cell, resources, index):
+    def preprocess_cell(self, cell, resources, index, **kwargs):  # noqa
         return self.preprocessor.preprocess_cell(cell, resources, index)
 
 
@@ -35,7 +35,7 @@ class TigerHTMLExporter(HTMLExporter):
 
 
 class TigerPostprocessor(PostProcessorBase):
-    def postprocess(self, input):
+    def postprocess(self, input):  # noqa
         if is_new_notebook():
             from JupyterNotebookBase.public_extensions.tiger_preprocessor_v2 import error_raise  # noqa
         else:

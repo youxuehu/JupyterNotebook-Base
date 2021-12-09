@@ -4,7 +4,9 @@ from JupyterNotebookBase.utils import common_utils
 from JupyterNotebookBase.jupyter_extensions.notebook_save_hook import post_save_hook
 
 c.FileContentsManager.post_save_hook = post_save_hook  # noqa
-c.NotebookApp.contents_manager_class = "JupyterNotebookBase.jupyter_extensions.tiger_filemanager.TigerFileManager"  # noqa
+c.NotebookApp.contents_manager_class = (
+    "JupyterNotebookBase.jupyter_extensions.tiger_filemanager.TigerFileManager"  # noqa
+)
 c.NotebookApp.nbserver_extensions = {"JupyterNotebookBase.server_handler.operate_server_notebook_handler": True}  # noqa
 c.NotebookApp.disable_check_xsrf = True  # noqa
 if common_utils.is_new_notebook():  # noqa
