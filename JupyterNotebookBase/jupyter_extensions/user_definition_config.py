@@ -11,6 +11,6 @@ def get_user_definition_config():
     port = ConfigConstants.port
     log.info("user definition config name is %s" % name)
     log.info("user definition config port is %s" % port)
-    data["name"] = name
-    data["port"] = port
+    data["name"] = ConfigConstants.name
+    data["port"] = ConfigConstants.port
     return data

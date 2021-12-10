@@ -12,6 +12,7 @@ c.NotebookApp.contents_manager_class = (  # noqa
 c.NotebookApp.nbserver_extensions = {  # noqa
     "JupyterNotebookBase.server_handler.operate_server_notebook_handler": True,  # noqa
     "JupyterNotebookBase.server_handler.user_definition_config_handler": True,  # noqa
+    "JupyterNotebookBase.server_handler.one_handler": True,  # noqa
 }  # noqa
 c.NotebookApp.disable_check_xsrf = True  # noqa
 if common_utils.is_new_notebook():  # noqa

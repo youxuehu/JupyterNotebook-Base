@@ -15,22 +15,18 @@ def main():
         return
     with codecs.open(notebook_pid_path, mode="r", encoding="utf-8") as fin:
         pid = fin.read()
-    log.warn("get pid is %s" % pid)
     if not pid:
         return
     process_list = psutil.process_iter()
     for proc in process_list:
-        log.warn("get current pid is %s" % proc.pid)
         if int(pid.rstrip()) == int(proc.pid):
-            print(proc.name())
             p = psutil.Process(proc.pid)
-            log.warn("get name is %s" % p.name())
             if not "SYSTEM" in p.name():  # noqa
                 # 杀不死啊
                 proc.kill()
                 log.warn("Kill jupyter notebook process kill, pid is %s" % pid)
 
-    kill_9()
+    # kill_9()
 
 
 def kill_9():
