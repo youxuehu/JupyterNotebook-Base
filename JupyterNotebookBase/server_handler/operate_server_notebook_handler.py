@@ -1,7 +1,6 @@
 # -*- coding:utf-8 -*-
-from notebook.base.handlers import IPythonHandler  # noqa
+from JupyterNotebookBase.server_handler.base_handler import BaseHandler
 from concurrent.futures import ThreadPoolExecutor  # noqa
-import json
 from tornado import gen, concurrent  # noqa
 
 from jupyter_client.blocking.client import BlockingKernelClient
@@ -9,20 +8,9 @@ from notebook.utils import url_path_join  # noqa
 from JupyterNotebookBase.utils import notebook_kernel_utils
 
 
-class OperateNotebookHandler(IPythonHandler):  # noqa
+class OperateNotebookHandler(BaseHandler):  # noqa
 
     executor = ThreadPoolExecutor(4)
-
-    def get_request_param(self, key, require=True):
-        if self.request.headers["Content-Type"] == "application/json":
-            args = json.loads(self.request.body)
-            val = args.get(key)
-        else:
-            val = self.get_argument(key)
-        if require and val is None:
-            raise Exception("missing required param %s" % key)
-
-        return val
 
     def get(self):
         res = {"success": "true", "message": "notebook is running"}
