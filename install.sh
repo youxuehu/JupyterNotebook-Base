@@ -6,10 +6,11 @@ cd dist
 pip uninstall -y JupyterNotebookBase
 pip install JupyterNotebookBase-0.1.0-py2.py3-none-any.whl
 cd ../
-#rm -rf build
-#rm -rf dist
+rm -rf build
+rm -rf dist
 rm -rf JupyterNotebookBase.egg-info
-pip install notebook==6.4.0
+pip install notebook==6.4.6
+pip install nbconvert==6.0.7
 pip install psutil
 jupyternotebookbase_setup_jupyter
 jupyternotebookbase_kill_notebook_process
