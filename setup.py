@@ -18,7 +18,7 @@ setup(
     author="tiger",
     install_requires=install_requires,
     packages=find_packages(where=".", exclude=exclude_file_patterns),
-    package_data={"": ["*.so", "*.jar", "templates/**", "static/**"]},
+    package_data={"": ["*.so", "*.jar", "templates/**/*", "static/**/*"]},
     include_package_data=True,
     entry_points={
         "console_scripts": [

@@ -31,7 +31,9 @@ def main():
 
 def kill_9():
 
-    pids = replwrap.bash().run_command("ps -ef | grep \"jupyter-notebook\" | grep -v grep | awk '{print $2}'", timeout=None)
+    pids = replwrap.bash().run_command(
+        "ps -ef | grep \"jupyter-notebook\" | grep -v grep | awk '{print $2}'", timeout=None
+    )
     pids = pids.split("\r\n")
     pids = list(filter(lambda pid: pid != "" or pid is not None, pids))
     for pid in pids:
@@ -43,4 +45,3 @@ def kill_9():
 
 if __name__ == "__main__":
     main()
-
