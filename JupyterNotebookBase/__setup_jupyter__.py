@@ -4,12 +4,15 @@ from JupyterNotebookBase import MY_DEFAULT_STATIC_FILES_PATH, MY_DEFAULT_TEMPLAT
 from notebook import DEFAULT_STATIC_FILES_PATH, DEFAULT_TEMPLATE_PATH_LIST
 import os
 import shutil
+import sys
 
 jupyter_notebook_config = os.path.join(current_dir, "jupyter_notebook_config.py")  # noqa
 jupyter_nbconvert_config = os.path.join(current_dir, "jupyter_nbconvert_config.py")  # noqa
 
 
 def main():
+    if sys.platform == "linux":
+        os.environ["JUPYTER_CONFIG_HOME"] = "/root/.jupyter"
     shutil.copy(
         jupyter_notebook_config, os.path.join(os.getenv("JUPYTER_CONFIG_HOME"), "jupyter_notebook_config.py")
     )  # noqa

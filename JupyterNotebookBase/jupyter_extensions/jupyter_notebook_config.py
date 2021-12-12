@@ -1,5 +1,6 @@
 # -*- coding:utf-8 -*-
 # Configuration file for jupyter-notebook.
+from JupyterNotebookBase.ipython_extensions import ipython_config  # noqa
 from JupyterNotebookBase.utils import common_utils
 from JupyterNotebookBase.jupyter_extensions.notebook_save_hook import post_save_hook
 
