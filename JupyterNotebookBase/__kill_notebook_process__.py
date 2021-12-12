@@ -24,7 +24,7 @@ def main():
             if not "SYSTEM" in p.name():  # noqa
                 # 杀不死啊
                 proc.kill()
-                log.warn("Kill jupyter notebook process kill, pid is %s" % pid)
+                log.warn("Kill jupyter notebook process, pid is %s" % pid)
 
     # kill_9()
 

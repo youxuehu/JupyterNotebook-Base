@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 # Configuration file for jupyter-nbconvert.
-c.Exporter.preprocessors = ["tiger_executors.TigerPreprocessor"]  # noqa
+# c.Exporter.preprocessors = ["tiger_executors.TigerPreprocessor"]  # noqa
 
 # ------------------------------------------------------------------------------
 # Application(SingletonConfigurable) configuration
