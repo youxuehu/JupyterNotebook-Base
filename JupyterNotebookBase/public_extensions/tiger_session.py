@@ -7,6 +7,7 @@ import re
 import json
 import codecs
 from JupyterNotebookBase.utils.log_utils import get_logger
+from notebook.utils import maybe_future
 
 log = get_logger(__name__)
 
@@ -61,8 +62,14 @@ class HubSessionManagerV2(SessionManager):
                 params = json.loads(content)
         lines = ['name="zhangsan"']
         # 启动监听服务
-        name_split = name.split(".")
-        _start_monitor_service(name_split[0])
+        self.log.info("start kernel for session session_id: %s" % session_id)
+        self.log.info("start kernel for session path: %s" % path)
+        self.log.info("start kernel for session name: %s" % name)
+        self.log.info("start kernel for session type: %s" % type)
+        self.log.info("start kernel for session kernel_name: %s" % kernel_name)
+        path_split = path.split("/")
+        file_name = path_split[len(path_split) - 1].split(".")[0]
+        _start_monitor_service(file_name)
         kernel_path = self.contents_manager.get_kernel_path(path=path)
         from notebook.utils import maybe_future  # noqa
 
@@ -71,17 +78,42 @@ class HubSessionManagerV2(SessionManager):
         )
         raise gen.Return(kernel_id)
 
+    @gen.coroutine
+    def delete_session(self, session_id):
+        """
+        关闭 session 的时候
+        :param session_id:
+        :return:
+        """
+        session = yield maybe_future(self.get_session(session_id=session_id))
+        self.log.info("session_id: %s" % session_id)
+        self.log.info("session: %s" % session)
+        super(HubSessionManagerV2, self).delete_session(session_id)
+        path = session["path"]
+        self.log.info("path: %s" % path)
+        path_split = path.split("/")
+        file_name = path_split[len(path_split) - 1].split(".")[0]
+        self.log.info("file_name: %s" % file_name)
+        from JupyterNotebookBase.public_extensions import monitor_base_path, monitor_pid_path
+        monitor_pid_path = monitor_pid_path % file_name
+        from JupyterNotebookBase.utils.ps_kill_process_utils import kill_process
+        kill_process(monitor_pid_path, self.log)
+        monitor_path = os.path.join(monitor_base_path, file_name)
+        if os.path.isdir(monitor_path):
+            os.system("rm -rf %s" % monitor_path)
+
 
 def _start_monitor_service(name):
-    monitor_log_path = "/root/monitor_event_%s.log" % name
-    monitor_pid_path = "/root/monitor_event_%s.pid" % name
-    from JupyterNotebookBase.public_extensions import monitor_base_path
 
+    from JupyterNotebookBase.public_extensions import monitor_base_path, monitor_log_path, monitor_pid_path
+    monitor_log_path = monitor_log_path % name
+    monitor_pid_path = monitor_pid_path % name
     monitor_path = os.path.join(monitor_base_path, name)
     if os.path.isdir(monitor_path):
         log.info("Monitor service has been start up, monitor path at %s" % monitor_path)
         return
     os.makedirs(monitor_path)
+
     os.system(
         "nohup jupyternotebookbase_monitor_event --monitor_path=%s >> %s 2>&1 & echo $! > %s"
         % (monitor_path, monitor_log_path, monitor_pid_path)

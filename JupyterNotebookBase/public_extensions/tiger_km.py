@@ -60,6 +60,20 @@ class HubKernelManagerV2(IOLoopKernelManager):
             yield maybe_future(self.inject_lines(lines))
 
     @gen.coroutine
+    def shutdown_kernel(self, now: bool = False, restart: bool = False):
+        """
+        关闭 notebook 的时候
+        :param now:
+        :param restart:
+        :return:
+        """
+        super(HubKernelManagerV2, self).shutdown_kernel(now, restart)
+        self.log.info("哈哈😄")
+        self.log.info("HubKernelManagerV2 shutdown_kernel self: %s" % self)
+        self.log.info("kernel_id: %s" % self.kernel_id)
+        self.log.info("kernel_name: %s" % self.kernel_name)
+
+    @gen.coroutine
     def inject_lines(self, lines, silent=True):
         client = None
         try:
