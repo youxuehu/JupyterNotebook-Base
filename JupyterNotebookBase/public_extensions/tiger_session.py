@@ -81,6 +81,7 @@ def _start_monitor_service(name):
     if os.path.isdir(monitor_path):
         log.info("Monitor service has been start up, monitor path at %s" % monitor_path)
         return
+    os.makedirs(monitor_path)
     os.system(
         "nohup jupyternotebookbase_monitor_event --monitor_path=%s >> %s 2>&1 & echo $! > %s"
         % (monitor_path, monitor_log_path, monitor_pid_path)
