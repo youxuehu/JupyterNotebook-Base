@@ -21,7 +21,10 @@ class TigerPreprocessorV2(ExecutePreprocessor):
 
     def preprocess_cell(self, cell, resources, index, **kwargs):  # noqa
         global error_raise
-        print("================TigerPreprocessorV2=============preprocess_cell=================================== %s" % cell)  # noqa
+        print(
+            "================TigerPreprocessorV2=============preprocess_cell=================================== %s"
+            % cell
+        )  # noqa
         try:
             cell, resources = super(TigerPreprocessorV2, self).preprocess_cell(cell, resources, index)
             new_cell = self.execute_cell(cell=new_code_cell(source="%who"), cell_index=index, store_history=True)
@@ -32,7 +35,9 @@ class TigerPreprocessorV2(ExecutePreprocessor):
                 for v in new_cell.outputs[0]["text"].split("\t"):
                     try:
                         msg = self.execute_cell(
-                            cell=new_code_cell(source="%store {}".format(v.strip())), cell_index=index, store_history=True
+                            cell=new_code_cell(source="%store {}".format(v.strip())),
+                            cell_index=index,
+                            store_history=True,
                         ).outputs[0][
                             "text"
                         ]  # noqa

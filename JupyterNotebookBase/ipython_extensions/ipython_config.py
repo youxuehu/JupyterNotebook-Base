@@ -5,8 +5,8 @@ import sys
 
 lines = [
     "c.InteractiveShellApp.log_level = 20",
-    "c.InteractiveShellApp.exec_lines = [\"%matplotlib inline\"]",
-    "c.InteractiveShellApp.extensions = [\"JupyterNotebookBase.ipython_extensions.load_ipython_extension\"]",
+    'c.InteractiveShellApp.exec_lines = ["%matplotlib inline"]',
+    'c.InteractiveShellApp.extensions = ["JupyterNotebookBase.ipython_extensions.load_ipython_extension"]',
 ]
 if sys.platform == "linux":
     os.environ["IPYTHON_PROFILE_PATH"] = "/root/.ipython/profile_default"

@@ -1,12 +1,10 @@
 # -*- coding:utf-8 -*-
 from __future__ import print_function
-from IPython.core.magic import (Magics, magics_class, line_magic,
-                                cell_magic, line_cell_magic)
+from IPython.core.magic import Magics, magics_class, line_magic, cell_magic, line_cell_magic
 
 
 @magics_class
 class MyMagics(Magics):
-
     @line_magic
     def lmagic(self, line):  # 行魔术命令
         "my line magic"

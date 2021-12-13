@@ -24,6 +24,7 @@ setup(
         "console_scripts": [
             "jupyternotebookbase_setup_jupyter=JupyterNotebookBase.__setup_jupyter__:main",  # noqa
             "jupyternotebookbase_kill_notebook_process=JupyterNotebookBase.__kill_notebook_process__:main",  # noqa
+            "jupyternotebookbase_monitor_event=JupyterNotebookBase.monitor.__aistudio_monitor_event__:main",  # noqa
         ]
     },
 )

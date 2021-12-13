@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
 from nbconvert.preprocessors.execute import ExecutePreprocessor  # noqa
 from nbconvert.preprocessors import CellExecutionError  # noqa
+
 error_raise = False
 
 
@@ -17,7 +18,10 @@ class TigerPreprocessorV1(ExecutePreprocessor):
 
     def preprocess_cell(self, cell, resources, index, **kwargs):  # noqa
         global error_raise
-        print("================TigerPreprocessor=============preprocess_cell=========================================%s" % cell)  # noqa
+        print(
+            "================TigerPreprocessor=============preprocess_cell=========================================%s"
+            % cell
+        )  # noqa
         try:
             return super(TigerPreprocessorV1, self).preprocess_cell(cell, resources, index)
         except CellExecutionError as e:

@@ -1,1 +1,2 @@
+docker rmi tiger.com/1:20211211
 docker build . -t tiger.com/1:20211211
