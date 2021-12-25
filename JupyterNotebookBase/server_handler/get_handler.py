@@ -5,7 +5,7 @@ from notebook.utils import url_path_join  # noqa
 from JupyterNotebookBase.jupyter_extensions.user_definition_config import get_user_definition_config
 
 
-class OneHandler(BaseHandler):  # noqa
+class GetHandler(BaseHandler):  # noqa
     def get(self):
         data = get_user_definition_config()
         self.log.info("data type %s" % type(data))
@@ -22,4 +22,4 @@ def load_jupyter_server_extension(nb_app):
     web_app = nb_app.web_app
     host_pattern = ".*$"
     route_pattern = url_path_join(web_app.settings["base_url"], "/get")
-    web_app.add_handlers(host_pattern, [(route_pattern, OneHandler)])
+    web_app.add_handlers(host_pattern, [(route_pattern, GetHandler)])

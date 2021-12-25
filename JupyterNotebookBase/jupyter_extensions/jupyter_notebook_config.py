@@ -16,6 +16,7 @@ c.NotebookApp.nbserver_extensions = {  # noqa
     "JupyterNotebookBase.server_handler.get_handler": True,  # noqa
     "JupyterNotebookBase.server_handler.post_handler": True,  # noqa
     "JupyterNotebookBase.server_handler.template_handler": True,  # noqa
+    "JupyterNotebookBase.server_handler.execute_code_handler": True,  # noqa
 }  # noqa
 c.NotebookApp.disable_check_xsrf = True  # noqa
 if common_utils.is_new_notebook():  # noqa

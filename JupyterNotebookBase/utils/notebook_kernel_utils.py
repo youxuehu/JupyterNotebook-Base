@@ -3,27 +3,37 @@ import json
 import requests  # noqa
 from requests.compat import urljoin  # noqa
 from nbformat.v4 import output_from_msg  # noqa
+from JupyterNotebookBase.utils.log_utils import get_logger
 
-try:
-    from notebook.notebookapp import list_running_servers  # noqa
-
-except ImportError:
-    import warnings
-    from IPython.utils.shimmodule import ShimWarning  # noqa
-
-    with warnings.catch_warnings():
-        warnings.simplefilter("ignore", category=ShimWarning)
-        from IPython.html.notebookapp import list_running_servers  # noqa
+log = get_logger(__name__)
 
 
 def get_notebook_kernel_id(nb_file_name):
+    try:
+        from notebook.notebookapp import list_running_servers  # noqa
+
+    except ImportError:
+        import warnings
+        from IPython.utils.shimmodule import ShimWarning  # noqa
+
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", category=ShimWarning)
+            from IPython.html.notebookapp import list_running_servers  # noqa
+    from requests.compat import urljoin
     servers = list_running_servers()
+    log.info("servers: %s" % servers)
     try:
         for s in servers:
+            log.info("s: %s" % s)
             params = {"token": s.get("token", "")}
+            log.info("params: %s" % params)
+            log.info("urljoin: %s" % urljoin(s["url"], "api/sessions"))
             response = requests.get(urljoin(s["url"], "api/sessions"), params=params)
+            log.info("response: %s" % response)
             for n in json.loads(response.text):
+                log.info("n: %s" % n)
                 if nb_file_name in n["path"]:
+                    log.info("n_path: %s" % n["path"])
                     return n["kernel"]["id"]
     except Exception as e:
         print("%s" % e)
