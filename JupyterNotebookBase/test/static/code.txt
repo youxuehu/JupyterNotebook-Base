@@ -1,0 +1,6 @@
+import pandas as pd
+columns = ["name", "age", "email"]
+data = []
+item = ["jack", 20, "jack@hotmail.com"]
+data.append(item)
+df1 = pd.DataFrame(data, columns=columns)

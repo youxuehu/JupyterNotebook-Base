@@ -26,7 +26,7 @@ def main():
                 proc.kill()
                 log.warn("Kill jupyter notebook process, pid is %s" % pid)
 
-    # kill_9()
+    kill_9()
 
 
 def kill_9():

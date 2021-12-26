@@ -23,7 +23,7 @@ class ExecuteCodeHandler(BaseHandler):  # noqa
         super(ExecuteCodeHandler, self).__init__(*args, **kwargs)
 
     @gen.coroutine
-    def post(self):
+    def get(self):
         self.log.info("进入～")
         data = {"success": True}
 
@@ -33,9 +33,9 @@ class ExecuteCodeHandler(BaseHandler):  # noqa
 
     @concurrent.run_on_executor()
     def exec(self):
-        code = self.get_request_param("code")
+        code = self.get_argument("code")
         self.log.info("code： %s" % code)
-        nb_file_name = self.get_request_param("nb_file_name")
+        nb_file_name = self.get_argument("nb_file_name")
         self.log.info("nb_file_name： %s" % nb_file_name)
         kernel_id = notebook_kernel_utils.get_notebook_kernel_id(nb_file_name)
         self.log.info("kernel_id： %s" % kernel_id)
@@ -47,11 +47,9 @@ class ExecuteCodeHandler(BaseHandler):  # noqa
         kc.load_connection_file()
         self.log.info("load_connection_file")
         asyncio.set_event_loop(asyncio.new_event_loop())
-        status, outs = notebook_kernel_utils.run_code_with_kernel(kc, code)
-        self.log.info("status： %s" % status)
-        self.log.info("outs： %s" % outs)
-        res = {"status": status, "outs": outs}
-
+        msg_id = notebook_kernel_utils.run_code(kc, [code])
+        self.log.info("msg_id： %s" % msg_id)
+        res = {"msg_id": msg_id}
         return res
 
 

@@ -23,20 +23,30 @@ def get_notebook_kernel_id(nb_file_name):
     servers = list_running_servers()
     log.info("servers: %s" % servers)
     try:
-        for s in servers:
-            log.info("s: %s" % s)
-            params = {"token": s.get("token", "")}
+        for server in servers:
+            log.info("server: %s" % server)
+            params = {"token": server.get("token", "")}
             log.info("params: %s" % params)
-            log.info("urljoin: %s" % urljoin(s["url"], "api/sessions"))
-            response = requests.get(urljoin(s["url"], "api/sessions"), params=params)
+            log.info("urljoin: %s" % urljoin(server["url"], "api/sessions"))
+            response = requests.get(urljoin(server["url"], "api/sessions"), params=params)
             log.info("response: %s" % response)
-            for n in json.loads(response.text):
-                log.info("n: %s" % n)
-                if nb_file_name in n["path"]:
-                    log.info("n_path: %s" % n["path"])
-                    return n["kernel"]["id"]
+            for kernel in json.loads(response.text):
+                log.info("kernel: %s" % kernel)
+                if nb_file_name in kernel["path"]:
+                    log.info("n_path: %s" % kernel["path"])
+                    kernel_id = kernel["kernel"]["id"]
+                    log.info("kernel_id: %s" % kernel_id)
+                    return kernel_id
     except Exception as e:
         print("%s" % e)
+
+
+def run_code(kernel_client, lines):
+    kernel_client.start_channels()
+    kernel_client.wait_for_ready(30)
+    cmd = "\n".join(lines)
+    msg_id = kernel_client.execute(cmd)
+    return msg_id
 
 
 def run_code_with_kernel(kernel_client, lines):
