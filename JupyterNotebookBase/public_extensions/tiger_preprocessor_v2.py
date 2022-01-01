@@ -31,6 +31,11 @@ class TigerPreprocessorV2(ExecutePreprocessor):
             print()
             print(new_cell.outputs[0]["text"])
             print()
+            import sys
+            for out in new_cell.outputs:
+                if "text" in out:
+                    # 写入文件
+                    print(out["text"], sys.stdout, flush=True)
             if new_cell.outputs[0]["text"]:
                 for v in new_cell.outputs[0]["text"].split("\t"):
                     try:
