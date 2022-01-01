@@ -11,7 +11,7 @@ class MyMagics(Magics):
         print("Full access to the main IPython object:", self.shell)  # 可以控制整个ipython内核
         # #整个命名空间的变量
         # #同在ipython中的get_ipython().kernel.shell.user_ns.keys()==get_ipython().user_ns.keys()
-        # print("Variables in the user namespace:", list(self.shell.user_ns.keys()))
+        print("Variables in the user namespace:", list(self.shell.user_ns.keys()))
         return line
 
     @cell_magic
