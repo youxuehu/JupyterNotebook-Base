@@ -26,7 +26,18 @@ class TigerPreprocessorV2(ExecutePreprocessor):
             % cell
         )  # noqa
         try:
-            cell, resources = super(TigerPreprocessorV2, self).preprocess_cell(cell, resources, index)
+            # cell, resources = super(TigerPreprocessorV2, self).preprocess_cell(cell, resources, index)
+            from nbclient.client import NotebookClient, run_sync
+            self._check_assign_resources(resources)
+            # Because nbclient is an async library, we need to wrap the parent async call to generate a syncronous version.
+            cell = run_sync(NotebookClient.async_execute_cell)(self, cell, index, store_history=self.store_history)
+
+            import sys
+            for out in cell.outputs:
+                if "text" in out:
+                    # 写入文件
+                    print(out["text"], sys.stdout, flush=True)
+
             new_cell = self.execute_cell(cell=new_code_cell(source="%who"), cell_index=index, store_history=True)
             print()
             print(new_cell.outputs[0]["text"])
