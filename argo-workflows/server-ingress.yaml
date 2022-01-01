@@ -1,0 +1,14 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: argo-ui
+  namespace: argo
+spec:
+  entryPoints:
+  - web
+  routes:
+  - match: Host(`argowork-test.coolops.cn`)
+    kind: Rule
+    services:
+    - name: argo-server
+      port: 2746

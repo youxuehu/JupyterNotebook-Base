@@ -95,8 +95,10 @@ class HubSessionManagerV2(SessionManager):
         file_name = path_split[len(path_split) - 1].split(".")[0]
         self.log.info("file_name: %s" % file_name)
         from JupyterNotebookBase.public_extensions import monitor_base_path, monitor_pid_path
+
         monitor_pid_path = monitor_pid_path % file_name
         from JupyterNotebookBase.utils.ps_kill_process_utils import kill_process
+
         kill_process(monitor_pid_path, self.log)
         monitor_path = os.path.join(monitor_base_path, file_name)
         if os.path.isdir(monitor_path):
@@ -106,6 +108,7 @@ class HubSessionManagerV2(SessionManager):
 def _start_monitor_service(name):
 
     from JupyterNotebookBase.public_extensions import monitor_base_path, monitor_log_path, monitor_pid_path
+
     monitor_log_path = monitor_log_path % name
     monitor_pid_path = monitor_pid_path % name
     monitor_path = os.path.join(monitor_base_path, name)

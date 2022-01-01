@@ -10,11 +10,11 @@ from concurrent.futures import ThreadPoolExecutor
 
 
 class ExecuteCodeHandler(BaseHandler):  # noqa
-
     def __init__(self, *args, **kwargs):
         max_cores = 4
         try:
             import psutil
+
             max_cores = psutil.cpu_count()
         except Exception as e:
             pass

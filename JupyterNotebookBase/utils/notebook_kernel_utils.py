@@ -20,6 +20,7 @@ def get_notebook_kernel_id(nb_file_name):
             warnings.simplefilter("ignore", category=ShimWarning)
             from IPython.html.notebookapp import list_running_servers  # noqa
     from requests.compat import urljoin
+
     servers = list_running_servers()
     log.info("servers: %s" % servers)
     try:

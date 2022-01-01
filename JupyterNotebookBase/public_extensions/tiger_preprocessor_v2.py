@@ -21,32 +21,38 @@ class TigerPreprocessorV2(ExecutePreprocessor):
 
     def preprocess_cell(self, cell, resources, index, **kwargs):  # noqa
         global error_raise
-        print(
-            "================TigerPreprocessorV2=============preprocess_cell=================================== %s"
-            % cell
-        )  # noqa
+        # print(
+        #    "================TigerPreprocessorV2=============preprocess_cell=================================== %s"
+        #    % cell
+        # )  # noqa
+        print("TigerPreprocessorV2")
         try:
             # cell, resources = super(TigerPreprocessorV2, self).preprocess_cell(cell, resources, index)
             from nbclient.client import NotebookClient, run_sync
+
             self._check_assign_resources(resources)
             # Because nbclient is an async library, we need to wrap the parent async call to generate a syncronous version.
             cell = run_sync(NotebookClient.async_execute_cell)(self, cell, index, store_history=self.store_history)
 
             import sys
+
             for out in cell.outputs:
                 if "text" in out:
                     # 写入文件
-                    print(out["text"], sys.stdout, flush=True)
+                    print()
+                    # print(out["text"], sys.stdout, flush=True)
 
             new_cell = self.execute_cell(cell=new_code_cell(source="%who"), cell_index=index, store_history=True)
             print()
-            print(new_cell.outputs[0]["text"])
+            # print(new_cell.outputs[0]["text"])
             print()
             import sys
+
             for out in new_cell.outputs:
                 if "text" in out:
                     # 写入文件
-                    print(out["text"], sys.stdout, flush=True)
+                    print()
+                    # print(out["text"], sys.stdout, flush=True)
             if new_cell.outputs[0]["text"]:
                 for v in new_cell.outputs[0]["text"].split("\t"):
                     try:
@@ -57,11 +63,31 @@ class TigerPreprocessorV2(ExecutePreprocessor):
                         ).outputs[0][
                             "text"
                         ]  # noqa
-                        print(msg)
+                        print()
+                        # print(msg)
                     except Exception:  # noqa
                         pass
             self.nb["cells"][index] = cell
+            # notebook 执行时，cell 执行的 print 日志需要出书到sls
+            # 2个方案:
+            # 1：cell 执行完将日志 stdout
+            # 2：每执行一个 cell 就输出一个 html
+            self._output_html(index)
             return cell, resources
         except CellExecutionError as e:
             error_raise = True
+            self._output_html(index)
             return cell, resources
+
+    def _output_html(self, index):
+        import nbformat
+
+        nbformat.write(self.nb, "/tmp/nbconvert.ipynb")
+        import os
+        import time
+
+        self.log.info("Execute cell index at %d" % index)
+        os.system(
+            "jupyter-nbconvert --to html /tmp/nbconvert.ipynb --output /Users/youxuehu/PycharmProjects/JupyterNotebook-Base/tmp/%s"
+            % str(time.time())
+        )
