@@ -25,7 +25,7 @@ class TigerPreprocessorV2(ExecutePreprocessor):
         #    "================TigerPreprocessorV2=============preprocess_cell=================================== %s"
         #    % cell
         # )  # noqa
-        print("TigerPreprocessorV2")
+        # print("TigerPreprocessorV2")
         try:
             # cell, resources = super(TigerPreprocessorV2, self).preprocess_cell(cell, resources, index)
             from nbclient.client import NotebookClient, run_sync
@@ -40,7 +40,7 @@ class TigerPreprocessorV2(ExecutePreprocessor):
                 if "text" in out:
                     # 写入文件
                     print()
-                    # print(out["text"], sys.stdout, flush=True)
+                    print(out["text"], sys.stdout, flush=True)
 
             new_cell = self.execute_cell(cell=new_code_cell(source="%who"), cell_index=index, store_history=True)
             print()
@@ -52,7 +52,7 @@ class TigerPreprocessorV2(ExecutePreprocessor):
                 if "text" in out:
                     # 写入文件
                     print()
-                    # print(out["text"], sys.stdout, flush=True)
+                    print(out["text"], sys.stdout, flush=True)
             if new_cell.outputs[0]["text"]:
                 for v in new_cell.outputs[0]["text"].split("\t"):
                     try:
@@ -68,16 +68,16 @@ class TigerPreprocessorV2(ExecutePreprocessor):
                     except Exception:  # noqa
                         pass
             self.nb["cells"][index] = cell
+            return cell, resources
+        except CellExecutionError as e:
+            error_raise = True
+            return cell, resources
+        finally:
             # notebook 执行时，cell 执行的 print 日志需要出书到sls
             # 2个方案:
             # 1：cell 执行完将日志 stdout
             # 2：每执行一个 cell 就输出一个 html
             self._output_html(index)
-            return cell, resources
-        except CellExecutionError as e:
-            error_raise = True
-            self._output_html(index)
-            return cell, resources
 
     def _output_html(self, index):
         import nbformat
@@ -86,8 +86,8 @@ class TigerPreprocessorV2(ExecutePreprocessor):
         import os
         import time
 
-        self.log.info("Execute cell index at %d" % index)
+        self.log.info("Execute cell index at %d is finished" % (index + 1))
         os.system(
-            "jupyter-nbconvert --to html /tmp/nbconvert.ipynb --output /Users/youxuehu/PycharmProjects/JupyterNotebook-Base/tmp/%s"
+            "jupyter-nbconvert --to html /tmp/nbconvert.ipynb --output /Users/youxuehu/PycharmProjects/JupyterNotebook-Base/tmp/%s"  # noqa
             % str(time.time())
         )
