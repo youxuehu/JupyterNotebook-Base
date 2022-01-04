@@ -12,6 +12,7 @@ class TigerPreprocessorV2(ExecutePreprocessor):
         print("=====================tiger_preprocessor_v2.py=========================")
         super(TigerPreprocessorV2, self).__init__(**kw)
         self.param_file_path = param_file_path
+        self.executed_cells = []
 
     def preprocess(self, nb, resources=None, km=None):  # noqa
         print("param_file_path: %s" % self.param_file_path)
@@ -40,34 +41,9 @@ class TigerPreprocessorV2(ExecutePreprocessor):
                 if "text" in out:
                     # 写入文件
                     print()
-                    print(out["text"], sys.stdout, flush=True)
+                    print(out["text"], file=sys.stdout, flush=True)
 
-            new_cell = self.execute_cell(cell=new_code_cell(source="%who"), cell_index=index, store_history=True)
-            print()
-            # print(new_cell.outputs[0]["text"])
-            print()
-            import sys
-
-            for out in new_cell.outputs:
-                if "text" in out:
-                    # 写入文件
-                    print()
-                    print(out["text"], sys.stdout, flush=True)
-            if new_cell.outputs[0]["text"]:
-                for v in new_cell.outputs[0]["text"].split("\t"):
-                    try:
-                        msg = self.execute_cell(
-                            cell=new_code_cell(source="%store {}".format(v.strip())),
-                            cell_index=index,
-                            store_history=True,
-                        ).outputs[0][
-                            "text"
-                        ]  # noqa
-                        print()
-                        # print(msg)
-                    except Exception:  # noqa
-                        pass
-            self.nb["cells"][index] = cell
+            # self._store_variable(cell, index)
             return cell, resources
         except CellExecutionError as e:
             error_raise = True
@@ -79,15 +55,78 @@ class TigerPreprocessorV2(ExecutePreprocessor):
             # 2：每执行一个 cell 就输出一个 html
             self._output_html(index)
 
+    def _store_variable(self, cell, index):
+        new_cell = self.execute_cell(cell=new_code_cell(source="%who"), cell_index=index, store_history=True)
+        print()
+        # print(new_cell.outputs[0]["text"])
+        print()
+        import sys
+
+        for out in new_cell.outputs:
+            if "text" in out:
+                # 写入文件
+                print()
+                print(out["text"], file=sys.stdout, flush=True)
+        if new_cell.outputs[0]["text"]:
+            for v in new_cell.outputs[0]["text"].split("\t"):
+                try:
+                    msg = self.execute_cell(
+                        cell=new_code_cell(source="%store {}".format(v.strip())),
+                        cell_index=index,
+                        store_history=True,
+                    ).outputs[0][
+                        "text"
+                    ]  # noqa
+                    print()
+                    # print(msg)
+                except Exception:  # noqa
+                    pass
+        self.nb["cells"][index] = cell
+
     def _output_html(self, index):
-        import nbformat
+        # self._method_1(index)
+        self._method_2(index)
 
-        nbformat.write(self.nb, "/tmp/nbconvert.ipynb")
-        import os
-        import time
+    def _method_1(self, index):
+        """
+        方法一
+        :param index:
+        :return:
+        """
+        try:
+            import nbformat
 
-        self.log.info("Execute cell index at %d is finished" % (index + 1))
-        os.system(
-            "jupyter-nbconvert --to html /tmp/nbconvert.ipynb --output /Users/youxuehu/PycharmProjects/JupyterNotebook-Base/tmp/%s"  # noqa
-            % str(time.time())
-        )
+            nbformat.write(self.nb, "/tmp/nbconvert.ipynb")
+            import os
+            import time
+
+            self.log.info("Execute cell index at %d is finished" % (index + 1))
+            os.system(
+                "jupyter-nbconvert --to html /tmp/nbconvert.ipynb --output /Users/youxuehu/PycharmProjects/JupyterNotebook-Base/tmp/%s"  # noqa
+                % str(time.time())
+            )
+        except Exception as e:
+            pass
+
+    def _method_2(self, index):
+        """
+        方法2
+        :param index:
+        :return:
+        """
+        import copy
+        from JupyterNotebookBase.public_extensions.tiger_executors import TigerHTMLExporter
+        import codecs
+
+        # 步骤1：过滤未执行的 cell，记录已执行的 cell
+        copy_nb = copy.deepcopy(self.nb)
+        self.executed_cells.append(self.nb["cells"][index])
+        copy_nb["cells"] = self.executed_cells
+
+        # 步骤2：将已执行测 cell 调用 jinjia2 模版引擎转换成 html 文本
+        html = TigerHTMLExporter()
+        output, resource = html.from_notebook_node(copy_nb, resources=self.resources)
+        if index == 0:
+            print("resource: %s" % resource)
+        with codecs.open("/Users/youxuehu/PycharmProjects/JupyterNotebook-Base/tmp/%d.html" % index, "w", encoding="utf-8") as f:  # noqa
+            f.write(output)
