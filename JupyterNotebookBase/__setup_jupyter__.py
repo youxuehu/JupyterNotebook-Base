@@ -1,5 +1,6 @@
 # -*- coding:utf-8 -*-
 from JupyterNotebookBase.jupyter_extensions import current_dir
+from JupyterNotebookBase.ipython_extensions import current_dir as ipy_dir
 from JupyterNotebookBase import MY_DEFAULT_STATIC_FILES_PATH, MY_DEFAULT_TEMPLATE_PATH_LIST
 from notebook import DEFAULT_STATIC_FILES_PATH, DEFAULT_TEMPLATE_PATH_LIST
 import os
@@ -8,9 +9,12 @@ import sys
 
 jupyter_notebook_config = os.path.join(current_dir, "jupyter_notebook_config.py")  # noqa
 jupyter_nbconvert_config = os.path.join(current_dir, "jupyter_nbconvert_config.py")  # noqa
+ipython_config = os.path.join(ipy_dir, "ipython_config.py")
 
 
 def main():
+    os.environ["JUPYTER_CONFIG_HOME"] = "%s/.jupyter" % os.getenv("HOME")
+    os.environ["IPYTHON_PROFILE_PATH"] = "%s/.ipython" % os.getenv("HOME")
     if sys.platform == "linux":
         os.environ["JUPYTER_CONFIG_HOME"] = "/root/.jupyter"
     shutil.copy(
@@ -18,6 +22,9 @@ def main():
     )  # noqa
     shutil.copy(
         jupyter_nbconvert_config, os.path.join(os.getenv("JUPYTER_CONFIG_HOME"), "jupyter_nbconvert_config.py")
+    )  # noqa
+    shutil.copy(
+        ipython_config, os.path.join(os.getenv("IPYTHON_PROFILE_PATH"), "ipython_config.py")
     )  # noqa
     # copy(MY_DEFAULT_STATIC_FILES_PATH, DEFAULT_STATIC_FILES_PATH)
     # copy(MY_DEFAULT_TEMPLATE_PATH_LIST, DEFAULT_TEMPLATE_PATH_LIST)

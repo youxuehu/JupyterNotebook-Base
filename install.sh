@@ -21,5 +21,5 @@ pip install psutil -I -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host m
 # pip install pyinotify -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
 jupyternotebookbase_setup_jupyter
 jupyternotebookbase_kill_notebook_process
-nohup jupyter notebook >> /Users/youxuehu/PycharmProjects/JupyterNotebook-Base/jupyter.log 2>&1 & echo $! > /Users/youxuehu/PycharmProjects/JupyterNotebook-Base/jupyter.pid
+nohup jupyter notebook >> $HOME/PycharmProjects/JupyterNotebook-Base/jupyter.log 2>&1 & echo $! > $HOME/PycharmProjects/JupyterNotebook-Base/jupyter.pid
 # jupyter notebook

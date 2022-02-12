@@ -3,6 +3,7 @@
 from JupyterNotebookBase.ipython_extensions import ipython_config  # noqa
 from JupyterNotebookBase.utils import common_utils
 from JupyterNotebookBase.jupyter_extensions.notebook_save_hook import post_save_hook
+import os
 
 c.TigerFileManager.name = "张三"  # noqa
 c.TigerFileManager.port = 1234  # noqa
@@ -37,7 +38,8 @@ c.NotebookApp.open_browser = True  # noqa
 c.NotebookApp.allow_remote_access = True  # noqa
 c.NotebookApp.allow_root = True  # noqa
 c.NotebookApp.ip = "0.0.0.0"  # noqa
-c.NotebookApp.notebook_dir = "/Users/youxuehu/PycharmProjects/JupyterNotebook-Base"  # noqa
+c.NotebookApp.port = 9999  # noqa
+c.NotebookApp.notebook_dir = "%s/PycharmProjects/JupyterNotebook-Base" % os.getenv("HOME")  # noqa
 c.NotebookApp.password = ""  # noqa
 c.NotebookApp.terminado_settings = {"shell_command": ["/bin/bash"]}  # noqa
 c.NotebookApp.token = ""  # noqa

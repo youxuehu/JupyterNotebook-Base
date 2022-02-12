@@ -11,6 +11,6 @@ lines = [
 if sys.platform == "linux":
     os.environ["IPYTHON_PROFILE_PATH"] = "/root/.ipython/profile_default"
 elif sys.platform == "darwin":
-    os.environ["IPYTHON_PROFILE_PATH"] = "/Users/youxuehu/.ipython/profile_default"
+    os.environ["IPYTHON_PROFILE_PATH"] = "%s/.ipython/profile_default" % os.getenv("HOME")
 with codecs.open(os.path.join(os.getenv("IPYTHON_PROFILE_PATH"), "ipython_config.py"), "w") as fout:
     fout.write("\n".join(lines))
