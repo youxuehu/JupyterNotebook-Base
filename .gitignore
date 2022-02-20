@@ -20,3 +20,4 @@ deploy_key_rsa
 *.pid
 .ipynb_checkpoints
 data-source
+venv
