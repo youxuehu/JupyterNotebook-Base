@@ -12,6 +12,21 @@ jupyter_nbconvert_config = os.path.join(current_dir, "jupyter_nbconvert_config.p
 ipython_config = os.path.join(ipy_dir, "ipython_config.py")
 
 
+def __replace_kernel_zmq_channels_api():
+
+    src_url = "utils.url_path_join(that.kernel_url, 'channels')"
+    target_url = "utils.url_path_join(that.kernel_url, 'channels_tiger')"
+
+    kernel_js = os.path.join(DEFAULT_STATIC_FILES_PATH, "services/kernels/kernel.js")
+    if os.path.exists(kernel_js):
+        with open(kernel_js, "+r", encoding="utf-8") as f:
+            content = f.read()
+            content = content.replace(src_url, target_url)
+            f.seek(0, 0)
+            f.write(content)
+            f.truncate()
+
+
 def main():
     os.environ["JUPYTER_CONFIG_HOME"] = "%s/.jupyter" % os.getenv("HOME")
     os.environ["IPYTHON_PROFILE_PATH"] = "%s/.ipython" % os.getenv("HOME")
@@ -43,6 +58,9 @@ def main():
             os.path.join(DEFAULT_TEMPLATE_PATH_LIST[1], "my_template"),
         )
     )  # noqa
+
+    # 替换 js
+    __replace_kernel_zmq_channels_api()
 
 
 # def copy(src, target):
