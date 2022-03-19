@@ -22,6 +22,9 @@ class TigerZmqChannelsHandler(ZMQChannelsHandler):
             self.log.critical("Malformed message: %r" % msg_list, exc_info=True)
             return
 
+        # 处理 msg
+        self.log.warn("zmq msg ==> " + msg)
+
         try:
             self.write_message(msg, binary=isinstance(msg, bytes))
         except (StreamClosedError, WebSocketClosedError):
