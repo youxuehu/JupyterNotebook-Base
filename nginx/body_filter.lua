@@ -1,4 +1,4 @@
-local chuck, eof = ngx.arg[1], ngx.arg[2]
+local chunk, eof = ngx.arg[1], ngx.arg[2]
 local uri = ngx.var.url
 local buffered = ngx.ctx.buffered
 local headers = ngx.header
@@ -6,8 +6,8 @@ if not buffered then
     buffered = {}
     ngx.ctx.buffered = buffered
 end
-if chuck ~= "" then
-    buffered[#buffered + 1] = chuck
+if chunk ~= "" then
+    buffered[#buffered + 1] = chunk
     ngx.arg[1] = nil
 end
 
