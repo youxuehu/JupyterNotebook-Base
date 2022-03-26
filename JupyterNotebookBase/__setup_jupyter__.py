@@ -32,6 +32,10 @@ def main():
     os.environ["IPYTHON_PROFILE_PATH"] = "%s/.ipython" % os.getenv("HOME")
     if sys.platform == "linux":
         os.environ["JUPYTER_CONFIG_HOME"] = "/root/.jupyter"
+    if not os.path.exists(os.environ["JUPYTER_CONFIG_HOME"]):
+        os.makedirs(os.environ["JUPYTER_CONFIG_HOME"])
+    if not os.path.exists(os.environ["IPYTHON_PROFILE_PATH"]):
+        os.makedirs(os.environ["IPYTHON_PROFILE_PATH"])
     shutil.copy(
         jupyter_notebook_config, os.path.join(os.getenv("JUPYTER_CONFIG_HOME"), "jupyter_notebook_config.py")
     )  # noqa
