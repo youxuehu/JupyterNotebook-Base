@@ -39,6 +39,9 @@ c.NotebookApp.allow_remote_access = True  # noqa
 c.NotebookApp.allow_root = True  # noqa
 c.NotebookApp.ip = "0.0.0.0"  # noqa
 c.NotebookApp.port = 9999  # noqa
+notebook_dir = "%s/PycharmProjects/JupyterNotebook-Base" % os.getenv("HOME")
+if not os.path.exists(notebook_dir):
+    os.makedirs(notebook_dir)
 c.NotebookApp.notebook_dir = "%s/PycharmProjects/JupyterNotebook-Base" % os.getenv("HOME")  # noqa
 c.NotebookApp.password = ""  # noqa
 c.NotebookApp.terminado_settings = {"shell_command": ["/bin/bash"]}  # noqa
