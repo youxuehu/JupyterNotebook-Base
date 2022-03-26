@@ -2,7 +2,6 @@
 from notebook.services.kernels.handlers import ZMQChannelsHandler
 from tornado.iostream import StreamClosedError
 from tornado.websocket import WebSocketClosedError
-from notebook.utils import url_path_join
 
 
 class TigerZmqChannelsHandler(ZMQChannelsHandler):
@@ -23,6 +22,7 @@ class TigerZmqChannelsHandler(ZMQChannelsHandler):
             return
 
         # 处理 msg
+        self.log.warn("开始处理 channel message")
         self.log.warn("zmq msg ==> " + msg)
 
         try:
@@ -35,9 +35,6 @@ class TigerZmqChannelsHandler(ZMQChannelsHandler):
 
 _kernel_id_regex = r"(?P<kernel_id>\w+-\w+-\w+-\w+-\w+)"
 
-
-def load_jupyter_server_extension(nb_app):
-    web_app = nb_app.web_app
-    host_pattern = ".*$"
-    route_pattern = url_path_join(web_app.settings["base_url"], "/api/kernels/%s/channels_tiger" % _kernel_id_regex)
-    web_app.add_handlers(host_pattern, [(route_pattern, TigerZmqChannelsHandler)])
+default_handlers = [
+    (r"/api/kernels/%s/channels" % _kernel_id_regex, TigerZmqChannelsHandler),
+]

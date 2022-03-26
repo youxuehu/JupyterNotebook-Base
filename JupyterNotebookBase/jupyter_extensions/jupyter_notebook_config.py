@@ -18,7 +18,6 @@ c.NotebookApp.nbserver_extensions = {  # noqa
     "JupyterNotebookBase.server_handler.post_handler": True,  # noqa
     "JupyterNotebookBase.server_handler.template_handler": True,  # noqa
     "JupyterNotebookBase.server_handler.execute_code_handler": True,  # noqa
-    "JupyterNotebookBase.server_handler.tiger_zmq_channels_handler": True,  # noqa
 }  # noqa
 c.NotebookApp.disable_check_xsrf = True  # noqa
 if common_utils.is_new_notebook():  # noqa
@@ -44,6 +43,7 @@ c.NotebookApp.notebook_dir = "%s/PycharmProjects/JupyterNotebook-Base" % os.gete
 c.NotebookApp.password = ""  # noqa
 c.NotebookApp.terminado_settings = {"shell_command": ["/bin/bash"]}  # noqa
 c.NotebookApp.token = ""  # noqa
+c.NotebookApp.extra_services = ["JupyterNotebookBase.server_handler.tiger_zmq_channels_handler"]  # noqa
 # ------------------------------------------------------------------------------
 # Application(SingletonConfigurable) configuration
 # ------------------------------------------------------------------------------

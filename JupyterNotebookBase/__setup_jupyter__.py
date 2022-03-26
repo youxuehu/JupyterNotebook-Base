@@ -60,7 +60,8 @@ def main():
     )  # noqa
 
     # 替换 js
-    __replace_kernel_zmq_channels_api()
+    # todo 废弃
+    # __replace_kernel_zmq_channels_api()
 
 
 # def copy(src, target):
