@@ -2,6 +2,8 @@
 from notebook.services.kernels.handlers import ZMQChannelsHandler
 from tornado.iostream import StreamClosedError
 from tornado.websocket import WebSocketClosedError
+from JupyterNotebookBase.utils import json_utils
+import json
 
 
 class TigerZmqChannelsHandler(ZMQChannelsHandler):
@@ -23,8 +25,10 @@ class TigerZmqChannelsHandler(ZMQChannelsHandler):
 
         # 处理 msg
         self.log.warn("开始处理 channel message")
+        self.log.warn("zmq msg type ==> " + str(type(msg)))
+        msg_dict = json.loads(msg)
+        msg = json_utils.dumps(msg_dict, True)
         self.log.warn("zmq msg ==> " + msg)
-
         try:
             self.write_message(msg, binary=isinstance(msg, bytes))
         except (StreamClosedError, WebSocketClosedError):
