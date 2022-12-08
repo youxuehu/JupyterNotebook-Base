@@ -11,11 +11,14 @@ cd ../
 rm -rf build
 rm -rf dist
 rm -rf JupyterNotebookBase.egg-info
+pip install pyttsx3
 pip install pandas
 pip install pyodps
 pip install oss2
+pip install bash_kernel
+# python -m bash_kernel.install
 pip install jupyter
-pip install notebook 6.4.0 -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
+pip install notebook 6.4.6 -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
 pip install nbconvert -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
 pip install psutil -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
 # pip install pyinotify -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
