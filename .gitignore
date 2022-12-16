@@ -21,3 +21,5 @@ deploy_key_rsa
 .ipynb_checkpoints
 data-source
 venv
+nodeJS01/node_modules
+nodeJS02/node_modules
