@@ -46,7 +46,10 @@ c.NotebookApp.notebook_dir = "%s/PycharmProjects/JupyterNotebook-Base" % os.gete
 c.NotebookApp.password = ""  # noqa
 c.NotebookApp.terminado_settings = {"shell_command": ["/bin/bash"]}  # noqa
 c.NotebookApp.token = ""  # noqa
-c.NotebookApp.extra_services = ["JupyterNotebookBase.server_handler.tiger_zmq_channels_handler"]  # noqa
+c.NotebookApp.extra_services = [  # noqa
+    "JupyterNotebookBase.server_handler.tiger_zmq_channels_handler",
+"JupyterNotebookBase.server_handler.kernel_handler"
+]
 # ------------------------------------------------------------------------------
 # Application(SingletonConfigurable) configuration
 # ------------------------------------------------------------------------------
