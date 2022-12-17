@@ -23,3 +23,5 @@ data-source
 venv
 nodeJS01/node_modules
 nodeJS02/node_modules
+jupyter.log
+jupyter.pid
