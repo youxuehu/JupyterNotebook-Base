@@ -9,7 +9,7 @@ import json
 class TigerZmqChannelsHandler(ZMQChannelsHandler):
 
     def _on_zmq_reply(self, stream, msg_list):
-        self.log.info("进入自定义 kernel zmq channels tiger")
+        # self.log.info("进入自定义 kernel zmq channels tiger")
         # Sometimes this gets triggered when the on_close method is scheduled in the
         # eventloop but hasn't been called.
         if self.ws_connection is None or stream.closed():
@@ -24,11 +24,12 @@ class TigerZmqChannelsHandler(ZMQChannelsHandler):
             return
 
         # 处理 msg
-        self.log.warn("开始处理 channel message")
-        self.log.warn("zmq msg type ==> " + str(type(msg)))
-        msg_dict = json.loads(msg)
-        msg = json_utils.dumps(msg_dict, True)
-        self.log.warn("zmq msg ==> " + msg)
+        # self.log.warn("开始处理 channel message")
+        # self.log.warn("zmq msg type ==> " + str(type(msg)))
+        # msg_dict = json.loads(msg)
+        # if "status" == msg_dict.get("msg_type"):
+        #     msg = json_utils.dumps(msg_dict, True)
+        #     self.log.warn("zmq msg status ==> \n" + msg)
         try:
             self.write_message(msg, binary=isinstance(msg, bytes))
         except (StreamClosedError, WebSocketClosedError):

@@ -120,12 +120,13 @@ class TigerPreprocessorV2(ExecutePreprocessor):
 
         # 步骤1：过滤未执行的 cell，记录已执行的 cell
         copy_nb = copy.deepcopy(self.nb)
+        copy_resources = copy.deepcopy(self.resources)
         self.executed_cells.append(self.nb["cells"][index])
         copy_nb["cells"] = self.executed_cells
 
         # 步骤2：将已执行测 cell 调用 jinjia2 模版引擎转换成 html 文本
         html = TigerHTMLExporter()
-        output, resource = html.from_notebook_node(copy_nb, resources=self.resources)
+        output, resource = html.from_notebook_node(copy_nb, resources=copy_resources)
         if index == 0:
             print("resource: %s" % resource)
         with codecs.open("/Users/youxuehu/PycharmProjects/JupyterNotebook-Base/tmp/%d.html" % index, "w", encoding="utf-8") as f:  # noqa

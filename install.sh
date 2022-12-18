@@ -16,6 +16,7 @@ pip install pandas
 pip install pyodps
 pip install oss2
 pip install bash_kernel
+pip install matplotlib
 # python -m bash_kernel.install
 pip install jupyter
 pip install notebook 6.4.6 -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
