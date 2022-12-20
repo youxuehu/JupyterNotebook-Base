@@ -10,7 +10,7 @@ log = get_logger(__name__)
 notebook_pid_path = "/Users/youxuehu/PycharmProjects/JupyterNotebook-Base/jupyter.pid"
 
 
-def main():
+def main(name="jupyter-notebook"):
     log.warn("************************************************************************")
     log.warn("**************************** kill notebook start **********************************")
     log.warn("************************************************************************")
@@ -29,16 +29,16 @@ def main():
     #             proc.kill()
     #             log.warn("Kill jupyter notebook process, pid is %s" % pid)
 
-    kill_9()
+    kill_9(name=name)
     log.warn("************************************************************************")
     log.warn("**************************** kill notebook end **********************************")
     log.warn("************************************************************************")
 
 
-def kill_9():
+def kill_9(name="jupyter-notebook"):
 
     pids = replwrap.bash().run_command(
-        "ps -ef | grep \"jupyter-notebook\" | grep -v grep | awk '{print $2}'", timeout=None
+        "ps -ef | grep %s | grep -v grep | awk '{print $2}'" % name, timeout=None
     )
     log.warn("************** 杀死 pid ***********")
     log.warn("************** pid 查询：***********")
@@ -53,4 +53,4 @@ def kill_9():
 
 
 if __name__ == "__main__":
-    main()
+    main(name="nginx")
