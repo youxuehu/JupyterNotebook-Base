@@ -1,10 +1,12 @@
 JSON = (loadfile "JSON.lua")() -- one-time load of the routines
 
 local table = {
-    "name": "jack"
+    test = "jack"
 }
-local lua_value = JSON:decode(table) -- decode example
+local json_test = JSON:encode(table) -- decode example
+local pretty_json_text = JSON:encode_pretty(table) -- "pretty printed" version
 
+local tt1 = JSON:decode(json_test)        -- encode example
+local tt2 = JSON:decode(pretty_json_text)        -- encode example
 
-local raw_json_text    = JSON:encode(lua_value)        -- encode example
-local pretty_json_text = JSON:encode_pretty(lua_value) -- "pretty printed" version
+ngx.say(pretty_json_text)
