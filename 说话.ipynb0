@@ -1,0 +1,8 @@
+{
+    "cell_type": "code",
+    "execution_count": null,
+    "id": "548a7d3b",
+    "metadata": {},
+    "outputs": [],
+    "source": "pip install pyttsx3"
+}

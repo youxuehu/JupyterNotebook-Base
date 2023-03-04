@@ -52,13 +52,13 @@ class TigerFileManager(LargeFileManager):
 
     def _save_notebook(self, os_path, nb):
         self.log.info("_save_notebook................")
-        open(os_path, "w").write(json_utils.dumps_with_datetime(nb, True))
-        cell_dict = nb.get("cells")
-        for index, cell in enumerate(cell_dict):
-            index_path = os_path + str(index)
-            open(index_path, "w").write(json_utils.dumps_with_datetime(cell, True))
-            nb.get("cells")[index] = index_path
-        open(os_path, "w").write(json_utils.dumps_with_datetime(nb, True))
+        # open(os_path, "w").write(json_utils.dumps_with_datetime(nb, True))
+        # cell_dict = nb.get("cells")
+        # for index, cell in enumerate(cell_dict):
+        #     index_path = os_path + str(index)
+        #     open(index_path, "w").write(json_utils.dumps_with_datetime(cell, True))
+        #     nb.get("cells")[index] = index_path
+        # open(os_path, "w").write(json_utils.dumps_with_datetime(nb, True))
 
     def _read_notebook(self, os_path, as_version=4):
         self.log.info("_read_notebook................")

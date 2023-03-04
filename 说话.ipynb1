@@ -1,0 +1,10 @@
+{
+    "cell_type": "code",
+    "execution_count": null,
+    "id": "413d78bf",
+    "metadata": {
+        "scrolled": true
+    },
+    "outputs": [],
+    "source": "import pyttsx3\nengine = pyttsx3.init() #\u521d\u59cb\u5316\u8bed\u97f3\u5f15\u64ce\nengine.setProperty('rate', 100)   #\u8bbe\u7f6e\u8bed\u901f\nengine.setProperty('volume',0.6)  #\u8bbe\u7f6e\u97f3\u91cf\nrate = engine.getProperty('rate')\nprint(f'\u8bed\u901f\uff1a{rate}')\nvolume = engine.getProperty('volume')   \nprint (f'\u97f3\u91cf\uff1a{volume}') \n#\u8bed\u97f3\u64ad\u653e \npyttsx3.speak(\"How are you?\")\npyttsx3.speak(\"I am fine, thank you\")"
+}

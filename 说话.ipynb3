@@ -1,0 +1,8 @@
+{
+    "cell_type": "code",
+    "execution_count": null,
+    "id": "134ab428",
+    "metadata": {},
+    "outputs": [],
+    "source": "import pyttsx3\nengine = pyttsx3.init() #\u521d\u59cb\u5316\u8bed\u97f3\u5f15\u64ce\n \nengine.setProperty('rate', 100)   #\u8bbe\u7f6e\u8bed\u901f\nengine.setProperty('volume',0.6)  #\u8bbe\u7f6e\u97f3\u91cf\nvoices = engine.getProperty('voices') \nengine.setProperty('voice',voices[0].id)   #\u8bbe\u7f6e\u7b2c\u4e00\u4e2a\u8bed\u97f3\u5408\u6210\u5668\nengine.say(\"\u6625\u5149\u707f\u70c2\u732a\u516b\u6212\")\nengine.runAndWait()\nengine.stop()"
+}
