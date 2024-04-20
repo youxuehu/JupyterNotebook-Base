@@ -1,0 +1,8 @@
+pip install tensorflow==2.1.0
+pip install keras==2.3.1
+#pip install python==3.6
+pip install protobuf==3.19.6
+
+
+https://chengyong.blog.csdn.net/article/details/105846692
+
