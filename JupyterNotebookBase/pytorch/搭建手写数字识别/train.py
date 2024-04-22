@@ -94,4 +94,4 @@ def train(dir_path):
 
 
 if __name__ == "__main__":
-    train("./")
+    train("/")

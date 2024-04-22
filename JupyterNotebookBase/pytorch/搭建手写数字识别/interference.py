@@ -31,7 +31,7 @@ class MnistClassifyService(object):
 if __name__ == "__main__":
     checkpoint = torch.load("./checkpoint/model.pt")
     mnist = MnistClassifyService(checkpoint["model_state_dict"], False)
-    print(cv2.imread)
-    image = cv2.imread("./image/0.png", 0)
-    print(image.shape)
-    print(mnist.classify(image))
+    # print(cv2.imread)
+    image = cv2.imread("image/0.png", 0)
+    # print(image.shape)
+    print("你输入的数字是：%s" % str(mnist.classify(image)))
