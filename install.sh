@@ -1,4 +1,4 @@
-set
+set -x
 cd /JupyterNotebook-Base
 rm -rf build
 rm -rf dist
@@ -27,3 +27,4 @@ jupyternotebookbase_setup_jupyter
 jupyternotebookbase_kill_notebook_process
 # nohup jupyter notebook >> $HOME/PycharmProjects/JupyterNotebook-Base/jupyter.log 2>&1 & echo $! > $HOME/PycharmProjects/JupyterNotebook-Base/jupyter.pid
 jupyter notebook
+set +x
